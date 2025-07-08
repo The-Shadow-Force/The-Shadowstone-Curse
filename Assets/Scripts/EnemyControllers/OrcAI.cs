@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class OrcAI : MonoBehaviour
 {
@@ -15,7 +16,17 @@ public class OrcAI : MonoBehaviour
     [SerializeField] private float timeBetweenAttacks = 2f;
     [SerializeField] private float dealDamageAfter = 0.15f;
 
+    [Header("Tuần Tra")]
+    [SerializeField] private float patrolRadius = 2f;
+    [SerializeField] private float patrolSpeed = 1.2f;
+    [SerializeField] private float patrolPauseTime = 1.5f;
+
     private float nextAttackTime = 0f;
+    private bool isPatrolling = false;
+    private bool isReturningToInitial = false;
+    private Vector3 initialPosition;
+    private Vector3 patrolTarget;
+    private bool isMoving = false;
 
     void Awake()
     {
@@ -33,6 +44,7 @@ public class OrcAI : MonoBehaviour
         enemyStats = GetComponent<CharacterStats>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        initialPosition = transform.position;
     }
 
     void Update()
@@ -48,15 +60,29 @@ public class OrcAI : MonoBehaviour
         if (distanceToPlayer <= attackRange)
         {
             animator.SetBool("isRunning", false);
+            StopAllCoroutines();
+            isPatrolling = false;
+            isReturningToInitial = false;
+            isMoving = false;
             Attack();
         }
         else if (distanceToPlayer <= detectionRange)
         {
+            StopAllCoroutines();
+            isPatrolling = false;
+            isReturningToInitial = false;
+            isMoving = true;
             Chase();
         }
         else
         {
             animator.SetBool("isRunning", false);
+            isMoving = false;
+
+            if (!isReturningToInitial && !isPatrolling)
+            {
+                StartCoroutine(ReturnAndPatrol());
+            }
         }
     }
 
@@ -79,20 +105,13 @@ public class OrcAI : MonoBehaviour
     {
         if (Time.time >= nextAttackTime)
         {
-            // Phát Animation Attack ngẫu nhiên
             int randomAttack = Random.Range(0, 2);
             if (randomAttack == 0)
-            {
                 animator.SetTrigger("Attack1");
-            }
             else
-            {
                 animator.SetTrigger("Attack2");
-            }
 
-            // Gọi hàm gây sát thương sau 0.2s
             Invoke(nameof(DealDamageIfInRange), dealDamageAfter);
-
             nextAttackTime = Time.time + timeBetweenAttacks;
         }
     }
@@ -103,16 +122,77 @@ public class OrcAI : MonoBehaviour
             return;
 
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-
         if (distanceToPlayer <= attackRange)
         {
-            //Debug.Log(gameObject.name + " gây sát thương cho Player!");
             playerStats.TakeDamage(enemyStats.damage);
         }
         else
         {
             Debug.Log(gameObject.name + " đánh hụt!");
         }
+    }
+
+    private IEnumerator Patrol()
+    {
+        isPatrolling = true;
+        isMoving = true;
+
+        // Chọn điểm ngẫu nhiên trong hình tròn quanh vị trí ban đầu
+        Vector2 offset = Random.insideUnitCircle * patrolRadius;
+        patrolTarget = initialPosition + new Vector3(offset.x, offset.y, 0f);
+
+        // Xoay mặt
+        Vector3 dir = patrolTarget - transform.position;
+        if (dir.x != 0)
+        {
+            Vector3 scale = transform.localScale;
+            scale.x = Mathf.Abs(scale.x) * (dir.x > 0 ? 1 : -1);
+            transform.localScale = scale;
+        }
+
+        animator.SetBool("isRunning", true);
+
+        while (Vector3.Distance(transform.position, patrolTarget) > 0.1f)
+        {
+            Vector3 direction = (patrolTarget - transform.position).normalized;
+            transform.position += direction * patrolSpeed * Time.deltaTime;
+            yield return null;
+        }
+
+        animator.SetBool("isRunning", false);
+        isMoving = false;
+
+        yield return new WaitForSeconds(patrolPauseTime);
+        isPatrolling = false;
+    }
+
+    private IEnumerator ReturnAndPatrol()
+    {
+        isReturningToInitial = true;
+        isMoving = true;
+        animator.SetBool("isRunning", true);
+
+        while (Vector3.Distance(transform.position, initialPosition) > 0.1f)
+        {
+            Vector3 direction = (initialPosition - transform.position).normalized;
+            transform.position += direction * patrolSpeed * Time.deltaTime;
+
+            if (direction.x != 0)
+            {
+                Vector3 scale = transform.localScale;
+                scale.x = Mathf.Abs(scale.x) * (direction.x > 0 ? 1 : -1);
+                transform.localScale = scale;
+            }
+
+            yield return null;
+        }
+
+        animator.SetBool("isRunning", false);
+        isMoving = false;
+        yield return new WaitForSeconds(patrolPauseTime);
+
+        isReturningToInitial = false;
+        StartCoroutine(Patrol());
     }
 
     void OnDrawGizmosSelected()
@@ -122,5 +202,8 @@ public class OrcAI : MonoBehaviour
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(Application.isPlaying ? initialPosition : transform.position, patrolRadius);
     }
 }

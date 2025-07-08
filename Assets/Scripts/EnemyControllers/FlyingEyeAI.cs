@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SkeletonAI : MonoBehaviour
+public class FlyingEyeAI : MonoBehaviour
 {
     [Header("Tham Chiếu")]
     private Transform player;
@@ -11,20 +11,25 @@ public class SkeletonAI : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     [Header("Thông Số AI")]
-    [SerializeField] private float detectionRange = 2f;
-    [SerializeField] private float attackRange = 0.35f;
+    [SerializeField] private float detectionRange = 3f;
+    [SerializeField] private float attackRange = 0.5f;
     [SerializeField] private float timeBetweenAttacks = 1.5f;
-    [SerializeField] private float dealDamageAfter = 0.7f;
+    [SerializeField] private float dealDamageAfter = 0.5f;
 
-    [Header("Tuần Tra")]
+    [Header("Hiệu Ứng Cắn")]
+    [SerializeField] private float diveSpeed = 2.5f;
+    [SerializeField] private float preDiveDelay = 0.2f;
+    [SerializeField] private float postAttackDelay = 0.1f;
+
+    [Header("Trinh Sát")]
     [SerializeField] private float patrolRadius = 2f;
-    [SerializeField] private float patrolSpeed = 1f;
+    [SerializeField] private float patrolSpeed = 1.5f;
     [SerializeField] private float patrolPauseTime = 2f;
 
     private float nextAttackTime = 0f;
+    private bool isDiving = false;
     private bool isPatrolling = false;
     private bool isReturningToInitial = false;
-    private bool isMoving = false;
 
     private Vector3 initialPosition;
     private Vector3 patrolTarget;
@@ -39,7 +44,7 @@ public class SkeletonAI : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Không tìm thấy đối tượng Player! Hãy chắc chắn tag 'Player' được gán đúng.");
+            Debug.LogError("Không tìm thấy Player! Gắn đúng tag 'Player'.");
         }
 
         enemyStats = GetComponent<CharacterStats>();
@@ -50,9 +55,11 @@ public class SkeletonAI : MonoBehaviour
 
     void Update()
     {
+        if (isDiving || isReturningToInitial) return;
+
         if (player == null || playerStats == null || playerStats.currentHealth <= 0)
         {
-            animator.SetBool("isRunning", false);
+            animator.SetBool("isFlying", false);
             return;
         }
 
@@ -60,32 +67,23 @@ public class SkeletonAI : MonoBehaviour
 
         if (distanceToPlayer <= attackRange)
         {
-            animator.SetBool("isRunning", false);
-            StopAllCoroutines();
-            isPatrolling = false;
-            isReturningToInitial = false;
-            isMoving = false;
+            animator.SetBool("isFlying", false);
             Attack();
         }
         else if (distanceToPlayer <= detectionRange)
         {
             StopAllCoroutines();
             isPatrolling = false;
-            isReturningToInitial = false;
-            isMoving = true;
             Chase();
         }
         else
         {
-            animator.SetBool("isRunning", false);
-
-            if (!isReturningToInitial && !isPatrolling)
+            animator.SetBool("isFlying", false);
+            if (!isPatrolling)
             {
                 StartCoroutine(ReturnAndPatrol());
             }
         }
-
-        animator.SetBool("isRunning", isMoving);
     }
 
     private void Chase()
@@ -99,45 +97,78 @@ public class SkeletonAI : MonoBehaviour
             localScale.x = Mathf.Abs(localScale.x) * (direction.x > 0 ? 1 : -1);
             transform.localScale = localScale;
         }
+
+        animator.SetBool("isFlying", true);
     }
 
     private void Attack()
     {
         if (Time.time >= nextAttackTime)
         {
-            animator.SetTrigger("Attack");
-            Invoke(nameof(DealDamageIfInRange), dealDamageAfter);
+            StartCoroutine(DiveThenAttackThenFlyBack());
             nextAttackTime = Time.time + timeBetweenAttacks;
         }
     }
 
-    private void DealDamageIfInRange()
+    private IEnumerator DiveThenAttackThenFlyBack()
     {
-        if (player == null || playerStats == null || playerStats.currentHealth <= 0)
-            return;
+        isDiving = true;
+        Vector3 startPos = transform.position;
 
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        if (player != null)
+        {
+            Vector3 scale = transform.localScale;
+            scale.x = Mathf.Abs(scale.x) * (player.position.x > transform.position.x ? 1 : -1);
+            transform.localScale = scale;
+        }
 
-        if (distanceToPlayer <= attackRange)
+        animator.SetTrigger("Attack");
+        yield return new WaitForSeconds(preDiveDelay);
+
+        Vector3 diveTarget = player != null ? player.position + new Vector3(0f, -0.1f, 0f) : transform.position;
+
+        float t = 0f;
+        while (t < 1f)
         {
-            playerStats.TakeDamage(enemyStats.damage);
+            t += Time.deltaTime * diveSpeed;
+            transform.position = Vector3.Lerp(startPos, diveTarget, t);
+            yield return null;
         }
-        else
+
+        yield return new WaitForSeconds(dealDamageAfter);
+
+        if (player != null && playerStats != null && playerStats.currentHealth > 0)
         {
-            Debug.Log(gameObject.name + " đánh hụt!");
+            float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+            if (distanceToPlayer <= attackRange)
+            {
+                playerStats.TakeDamage(enemyStats.damage);
+            }
+            else
+            {
+                Debug.Log(gameObject.name + " cắn hụt!");
+            }
         }
+
+        yield return new WaitForSeconds(postAttackDelay);
+
+        t = 0f;
+        while (t < 1f)
+        {
+            t += Time.deltaTime * diveSpeed;
+            transform.position = Vector3.Lerp(diveTarget, startPos, t);
+            yield return null;
+        }
+
+        isDiving = false;
     }
 
     private IEnumerator Patrol()
     {
         isPatrolling = true;
-        isMoving = true;
 
-        // Điểm tuần tra random trong hình tròn
-        Vector2 randomCircle = Random.insideUnitCircle * patrolRadius;
-        patrolTarget = initialPosition + new Vector3(randomCircle.x, randomCircle.y, 0f);
+        patrolTarget = initialPosition + (Vector3)Random.insideUnitCircle * patrolRadius;
 
-        // Xoay mặt nếu cần
         Vector3 dir = patrolTarget - transform.position;
         if (dir.x != 0)
         {
@@ -146,7 +177,8 @@ public class SkeletonAI : MonoBehaviour
             transform.localScale = scale;
         }
 
-        // Di chuyển đến mục tiêu tuần tra
+        animator.SetBool("isFlying", true);
+
         while (Vector3.Distance(transform.position, patrolTarget) > 0.1f)
         {
             Vector3 direction = (patrolTarget - transform.position).normalized;
@@ -154,7 +186,7 @@ public class SkeletonAI : MonoBehaviour
             yield return null;
         }
 
-        isMoving = false;
+        animator.SetBool("isFlying", false);
         yield return new WaitForSeconds(patrolPauseTime);
 
         isPatrolling = false;
@@ -163,24 +195,22 @@ public class SkeletonAI : MonoBehaviour
     private IEnumerator ReturnAndPatrol()
     {
         isReturningToInitial = true;
-        isMoving = true;
+
+        animator.SetBool("isFlying", true);
 
         while (Vector3.Distance(transform.position, initialPosition) > 0.1f)
         {
             Vector3 direction = (initialPosition - transform.position).normalized;
             transform.position += direction * patrolSpeed * Time.deltaTime;
 
-            if (direction.x != 0)
-            {
-                Vector3 scale = transform.localScale;
-                scale.x = Mathf.Abs(scale.x) * (direction.x > 0 ? 1 : -1);
-                transform.localScale = scale;
-            }
+            Vector3 scale = transform.localScale;
+            scale.x = Mathf.Abs(scale.x) * (direction.x > 0 ? 1 : -1);
+            transform.localScale = scale;
 
             yield return null;
         }
 
-        isMoving = false;
+        animator.SetBool("isFlying", false);
         yield return new WaitForSeconds(patrolPauseTime);
 
         isReturningToInitial = false;
@@ -189,7 +219,7 @@ public class SkeletonAI : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.yellow;
+        Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(transform.position, detectionRange);
 
         Gizmos.color = Color.red;
