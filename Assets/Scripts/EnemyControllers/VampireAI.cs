@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class OrcAI : MonoBehaviour
+public class VampirenAI : MonoBehaviour
 {
     [Header("Tham Chiếu")]
     private Transform player;
@@ -10,10 +10,10 @@ public class OrcAI : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     [Header("Thông Số AI")]
-    [SerializeField] private float detectionRange = 2f;
-    [SerializeField] private float attackRange = 0.36f;
-    [SerializeField] private float timeBetweenAttacks = 2f;
-    [SerializeField] private float dealDamageAfter = 0.15f;
+    [SerializeField] private float detectionRange = 10f;
+    [SerializeField] private float attackRange = 1.5f;
+    [SerializeField] private float timeBetweenAttacks = 1.5f;
+    [SerializeField] private float dealDamageAfter = 0.2f;
 
     private float nextAttackTime = 0f;
 
@@ -79,18 +79,9 @@ public class OrcAI : MonoBehaviour
     {
         if (Time.time >= nextAttackTime)
         {
-            // Phát Animation Attack ngẫu nhiên
-            int randomAttack = Random.Range(0, 2);
-            if (randomAttack == 0)
-            {
-                animator.SetTrigger("Attack1");
-            }
-            else
-            {
-                animator.SetTrigger("Attack2");
-            }
+            animator.SetTrigger("Attack");
 
-            // Gọi hàm gây sát thương sau 0.2s
+            // Gọi hàm gây sát thương sau...
             Invoke(nameof(DealDamageIfInRange), dealDamageAfter);
 
             nextAttackTime = Time.time + timeBetweenAttacks;
@@ -108,6 +99,11 @@ public class OrcAI : MonoBehaviour
         {
             //Debug.Log(gameObject.name + " gây sát thương cho Player!");
             playerStats.TakeDamage(enemyStats.damage);
+            enemyStats.currentHealth += 10; // Vampires heal themselves when they attack
+            if (enemyStats.currentHealth > enemyStats.maxHealth)
+            {
+                enemyStats.currentHealth = enemyStats.maxHealth; // Ensure health does not exceed max
+            }
         }
         else
         {

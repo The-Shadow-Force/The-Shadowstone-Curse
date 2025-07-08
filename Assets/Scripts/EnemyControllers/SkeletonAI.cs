@@ -10,10 +10,10 @@ public class SkeletonAI : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     [Header("Thông Số AI")]
-    [SerializeField] private float detectionRange = 10f;
-    [SerializeField] private float attackRange = 1.5f;
+    [SerializeField] private float detectionRange = 2f;
+    [SerializeField] private float attackRange = 0.35f;
     [SerializeField] private float timeBetweenAttacks = 1.5f;
-    [SerializeField] private float dealDamageAfter = 0.2f;
+    [SerializeField] private float dealDamageAfter = 0.7f;
 
     private float nextAttackTime = 0f;
 

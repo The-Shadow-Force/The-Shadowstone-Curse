@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 8142752618858140758}
   - component: {fileID: 287016611758687871}
   - component: {fileID: 254044929734324678}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Skeleton02
-  m_TagString: Untagged
+  m_TagString: Skeleton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
