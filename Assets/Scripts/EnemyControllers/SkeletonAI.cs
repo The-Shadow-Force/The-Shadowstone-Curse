@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class EnemyAI : MonoBehaviour
+public class SkeletonAI : MonoBehaviour
 {
     [Header("Tham Chiếu")]
     private Transform player;
@@ -79,18 +79,9 @@ public class EnemyAI : MonoBehaviour
     {
         if (Time.time >= nextAttackTime)
         {
-            // Phát Animation Attack ngẫu nhiên
-            int randomAttack = Random.Range(0, 2);
-            if (randomAttack == 0)
-            {
-                animator.SetTrigger("Attack1");
-            }
-            else
-            {
-                animator.SetTrigger("Attack2");
-            }
+            animator.SetTrigger("Attack1");
 
-            // Gọi hàm gây sát thương sau 0.2s
+            // Gọi hàm gây sát thương sau...
             Invoke(nameof(DealDamageIfInRange), dealDamageAfter);
 
             nextAttackTime = Time.time + timeBetweenAttacks;
