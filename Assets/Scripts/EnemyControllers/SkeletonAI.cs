@@ -79,7 +79,7 @@ public class SkeletonAI : MonoBehaviour
     {
         if (Time.time >= nextAttackTime)
         {
-            animator.SetTrigger("Attack1");
+            animator.SetTrigger("Attack");
 
             // Gọi hàm gây sát thương sau...
             Invoke(nameof(DealDamageIfInRange), dealDamageAfter);

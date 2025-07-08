@@ -187,6 +187,8 @@ GameObject:
   - component: {fileID: 902468573}
   - component: {fileID: 902468572}
   - component: {fileID: 902468571}
+  - component: {fileID: 902468575}
+  - component: {fileID: 902468574}
   m_Layer: 0
   m_Name: Skeleton01
   m_TagString: Untagged
@@ -286,6 +288,40 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &902468574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 902468570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80857662382cb094ca303ca61a51d94a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionRange: 2
+  attackRange: 0.3
+  timeBetweenAttacks: 1.5
+  dealDamageAfter: 0.5
+--- !u!114 &902468575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 902468570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b02e8b6ba8d011247822cfaacdfab349, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 100
+  damage: 10
+  speed: 1
+  maxMana: 0
+  currentMana: 0
 --- !u!1001 &934761350
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -294,6 +330,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 705907517515448832, guid: 8bd160a6316c5c241812e9e436764868, type: 3}
+      propertyPath: detectionRange
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1125993545573918811, guid: 8bd160a6316c5c241812e9e436764868, type: 3}
+      propertyPath: maxMana
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1125993545573918811, guid: 8bd160a6316c5c241812e9e436764868, type: 3}
+      propertyPath: currentMana
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2157986118929702456, guid: 8bd160a6316c5c241812e9e436764868, type: 3}
       propertyPath: m_Name
       value: Enemy
