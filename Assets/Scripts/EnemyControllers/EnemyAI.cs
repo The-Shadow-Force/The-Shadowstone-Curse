@@ -13,6 +13,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float detectionRange = 10f;
     [SerializeField] private float attackRange = 1.5f;
     [SerializeField] private float timeBetweenAttacks = 1.5f;
+    [SerializeField] private float dealDamageAfter = 0.2f;
 
     private float nextAttackTime = 0f;
 
@@ -78,11 +79,6 @@ public class EnemyAI : MonoBehaviour
     {
         if (Time.time >= nextAttackTime)
         {
-            Debug.Log(gameObject.name + " tấn công Player!");
-
-            // Gây sát thương liền khi tấn công
-            playerStats.TakeDamage(enemyStats.damage);
-
             // Phát Animation Attack ngẫu nhiên
             int randomAttack = Random.Range(0, 2);
             if (randomAttack == 0)
@@ -94,7 +90,28 @@ public class EnemyAI : MonoBehaviour
                 animator.SetTrigger("Attack2");
             }
 
+            // Gọi hàm gây sát thương sau 0.2s
+            Invoke(nameof(DealDamageIfInRange), dealDamageAfter);
+
             nextAttackTime = Time.time + timeBetweenAttacks;
+        }
+    }
+
+    private void DealDamageIfInRange()
+    {
+        if (player == null || playerStats == null || playerStats.currentHealth <= 0)
+            return;
+
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+
+        if (distanceToPlayer <= attackRange)
+        {
+            //Debug.Log(gameObject.name + " gây sát thương cho Player!");
+            playerStats.TakeDamage(enemyStats.damage);
+        }
+        else
+        {
+            Debug.Log(gameObject.name + " đánh hụt!");
         }
     }
 
