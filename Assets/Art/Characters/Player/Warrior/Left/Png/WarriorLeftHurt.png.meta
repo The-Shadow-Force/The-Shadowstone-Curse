@@ -1,28 +1,19 @@
 fileFormatVersion: 2
-guid: ee6d6635f638aae46be92b5f22a660e3
+guid: 13a02ea813f65ef4ebf4c53a94be4bff
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4035959289877228764
-    second: Walk_0
+      213: 5920930161153684528
+    second: WarriorLeftHurt_0
   - first:
-      213: -982904232830982447
-    second: Walk_1
+      213: 7333001002627964907
+    second: WarriorLeftHurt_1
   - first:
-      213: -350908408369970039
-    second: Walk_2
+      213: 4344193172095448131
+    second: WarriorLeftHurt_2
   - first:
-      213: -5409570386352685021
-    second: Walk_3
-  - first:
-      213: 1553940418269799609
-    second: Walk_4
-  - first:
-      213: 2416434504916517810
-    second: Walk_5
-  - first:
-      213: -6428935122508569504
-    second: Walk_6
+      213: -1397794986323310136
+    second: WarriorLeftHurt_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -118,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Walk_0
+      name: WarriorLeftHurt_0
       rect:
         serializedVersion: 2
-        x: 49
-        y: 0
-        width: 31
-        height: 66
+        x: 14
+        y: 6
+        width: 22
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cdce119379b920830800000000000000
-      internalID: 4035959289877228764
+      spriteID: 03436737c9e5b2250800000000000000
+      internalID: 5920930161153684528
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk_1
+      name: WarriorLeftHurt_1
       rect:
         serializedVersion: 2
-        x: 173
-        y: 0
-        width: 45
-        height: 66
+        x: 62
+        y: 7
+        width: 22
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,20 +146,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1d6a1e1dec50c52f0800000000000000
-      internalID: -982904232830982447
+      spriteID: bef193b5f8d04c560800000000000000
+      internalID: 7333001002627964907
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk_2
+      name: WarriorLeftHurt_2
       rect:
         serializedVersion: 2
-        x: 299
-        y: 0
-        width: 43
-        height: 66
+        x: 110
+        y: 8
+        width: 22
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -177,20 +168,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 984096a69a2512bf0800000000000000
-      internalID: -350908408369970039
+      spriteID: 3443d6a6caca94c30800000000000000
+      internalID: 4344193172095448131
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk_3
+      name: WarriorLeftHurt_3
       rect:
         serializedVersion: 2
-        x: 422
-        y: 0
-        width: 42
-        height: 66
+        x: 158
+        y: 9
+        width: 22
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -199,74 +190,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 320c9fd05685de4b0800000000000000
-      internalID: -5409570386352685021
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Walk_4
-      rect:
-        serializedVersion: 2
-        x: 554
-        y: 0
-        width: 35
-        height: 66
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9b4e719c394b09510800000000000000
-      internalID: 1553940418269799609
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Walk_5
-      rect:
-        serializedVersion: 2
-        x: 688
-        y: 0
-        width: 26
-        height: 66
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2b3cb802166e88120800000000000000
-      internalID: 2416434504916517810
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Walk_6
-      rect:
-        serializedVersion: 2
-        x: 817
-        y: 0
-        width: 29
-        height: 66
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 06428da6195d7c6a0800000000000000
-      internalID: -6428935122508569504
+      spriteID: 8c98063add80a9ce0800000000000000
+      internalID: -1397794986323310136
       vertices: []
       indices: 
       edges: []
@@ -275,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: dc5a1a4d09cad0f42a2218afb1774140
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -285,13 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Walk_0: 4035959289877228764
-      Walk_1: -982904232830982447
-      Walk_2: -350908408369970039
-      Walk_3: -5409570386352685021
-      Walk_4: 1553940418269799609
-      Walk_5: 2416434504916517810
-      Walk_6: -6428935122508569504
+      WarriorLeftHurt_0: 5920930161153684528
+      WarriorLeftHurt_1: 7333001002627964907
+      WarriorLeftHurt_2: 4344193172095448131
+      WarriorLeftHurt_3: -1397794986323310136
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

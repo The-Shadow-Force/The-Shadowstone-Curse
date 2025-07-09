@@ -1,28 +1,28 @@
 fileFormatVersion: 2
-guid: ee6d6635f638aae46be92b5f22a660e3
+guid: 32598fb713468ee49bb1f0a0480b3cb9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4035959289877228764
-    second: Walk_0
+      213: 8250014879689010445
+    second: WarriorLeftAttack02_0
   - first:
-      213: -982904232830982447
-    second: Walk_1
+      213: 8038225735706236410
+    second: WarriorLeftAttack02_1
   - first:
-      213: -350908408369970039
-    second: Walk_2
+      213: -7943584647263613802
+    second: WarriorLeftAttack02_2
   - first:
-      213: -5409570386352685021
-    second: Walk_3
+      213: -6927691474129879166
+    second: WarriorLeftAttack02_3
   - first:
-      213: 1553940418269799609
-    second: Walk_4
+      213: -2827781089837174594
+    second: WarriorLeftAttack02_4
   - first:
-      213: 2416434504916517810
-    second: Walk_5
+      213: 8119884897035300239
+    second: WarriorLeftAttack02_5
   - first:
-      213: -6428935122508569504
-    second: Walk_6
+      213: -1882894754212575345
+    second: WarriorLeftAttack02_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -118,13 +118,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Walk_0
+      name: WarriorLeftAttack02_0
       rect:
         serializedVersion: 2
-        x: 49
-        y: 0
-        width: 31
-        height: 66
+        x: 13
+        y: 6
+        width: 22
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,20 +133,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cdce119379b920830800000000000000
-      internalID: 4035959289877228764
+      spriteID: d0dec8792d0fd7270800000000000000
+      internalID: 8250014879689010445
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk_1
+      name: WarriorLeftAttack02_1
       rect:
         serializedVersion: 2
-        x: 173
-        y: 0
-        width: 45
-        height: 66
+        x: 62
+        y: 9
+        width: 20
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,20 +155,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1d6a1e1dec50c52f0800000000000000
-      internalID: -982904232830982447
+      spriteID: af55c21e7b38d8f60800000000000000
+      internalID: 8038225735706236410
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk_2
+      name: WarriorLeftAttack02_2
       rect:
         serializedVersion: 2
-        x: 299
-        y: 0
-        width: 43
-        height: 66
+        x: 109
+        y: 12
+        width: 21
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -177,20 +177,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 984096a69a2512bf0800000000000000
-      internalID: -350908408369970039
+      spriteID: 69c0b98a9d7b2c190800000000000000
+      internalID: -7943584647263613802
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk_3
+      name: WarriorLeftAttack02_3
       rect:
         serializedVersion: 2
-        x: 422
-        y: 0
-        width: 42
-        height: 66
+        x: 157
+        y: 4
+        width: 20
+        height: 35
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -199,20 +199,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 320c9fd05685de4b0800000000000000
-      internalID: -5409570386352685021
+      spriteID: 28f7cfa0f45ebdf90800000000000000
+      internalID: -6927691474129879166
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk_4
+      name: WarriorLeftAttack02_4
       rect:
         serializedVersion: 2
-        x: 554
-        y: 0
-        width: 35
-        height: 66
+        x: 198
+        y: 4
+        width: 27
+        height: 39
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -221,20 +221,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9b4e719c394b09510800000000000000
-      internalID: 1553940418269799609
+      spriteID: eb030bdb414b1c8d0800000000000000
+      internalID: -2827781089837174594
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk_5
+      name: WarriorLeftAttack02_5
       rect:
         serializedVersion: 2
-        x: 688
-        y: 0
-        width: 26
-        height: 66
+        x: 239
+        y: 5
+        width: 11
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -243,20 +243,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2b3cb802166e88120800000000000000
-      internalID: 2416434504916517810
+      spriteID: f8d29d8fa40afa070800000000000000
+      internalID: 8119884897035300239
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk_6
+      name: WarriorLeftAttack02_6
       rect:
         serializedVersion: 2
-        x: 817
-        y: 0
+        x: 249
+        y: 2
         width: 29
-        height: 66
+        height: 35
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -265,8 +265,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 06428da6195d7c6a0800000000000000
-      internalID: -6428935122508569504
+      spriteID: f8786b1723d9ed5e0800000000000000
+      internalID: -1882894754212575345
       vertices: []
       indices: 
       edges: []
@@ -275,7 +275,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: dc5a1a4d09cad0f42a2218afb1774140
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -285,13 +285,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Walk_0: 4035959289877228764
-      Walk_1: -982904232830982447
-      Walk_2: -350908408369970039
-      Walk_3: -5409570386352685021
-      Walk_4: 1553940418269799609
-      Walk_5: 2416434504916517810
-      Walk_6: -6428935122508569504
+      WarriorLeftAttack02_0: 8250014879689010445
+      WarriorLeftAttack02_1: 8038225735706236410
+      WarriorLeftAttack02_2: -7943584647263613802
+      WarriorLeftAttack02_3: -6927691474129879166
+      WarriorLeftAttack02_4: -2827781089837174594
+      WarriorLeftAttack02_5: 8119884897035300239
+      WarriorLeftAttack02_6: -1882894754212575345
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

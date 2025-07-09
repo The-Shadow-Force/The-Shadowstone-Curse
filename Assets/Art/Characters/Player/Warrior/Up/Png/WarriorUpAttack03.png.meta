@@ -1,28 +1,22 @@
 fileFormatVersion: 2
-guid: ee6d6635f638aae46be92b5f22a660e3
+guid: 02e831fddafcc044b9f98e63ba38b699
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4035959289877228764
-    second: Walk_0
+      213: 8656239647332741157
+    second: WarriorUpAttack03_0
   - first:
-      213: -982904232830982447
-    second: Walk_1
+      213: 1318102598155661505
+    second: WarriorUpAttack03_1
   - first:
-      213: -350908408369970039
-    second: Walk_2
+      213: -5761118152819921683
+    second: WarriorUpAttack03_2
   - first:
-      213: -5409570386352685021
-    second: Walk_3
+      213: 7995453576334773992
+    second: WarriorUpAttack03_3
   - first:
-      213: 1553940418269799609
-    second: Walk_4
-  - first:
-      213: 2416434504916517810
-    second: Walk_5
-  - first:
-      213: -6428935122508569504
-    second: Walk_6
+      213: 46619588314212881
+    second: WarriorUpAttack03_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -118,13 +112,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Walk_0
+      name: WarriorUpAttack03_0
       rect:
         serializedVersion: 2
-        x: 49
-        y: 0
-        width: 31
-        height: 66
+        x: 12
+        y: 8
+        width: 24
+        height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,20 +127,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cdce119379b920830800000000000000
-      internalID: 4035959289877228764
+      spriteID: 520bbe5b814212870800000000000000
+      internalID: 8656239647332741157
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk_1
+      name: WarriorUpAttack03_1
       rect:
         serializedVersion: 2
-        x: 173
-        y: 0
-        width: 45
-        height: 66
+        x: 59
+        y: 11
+        width: 24
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,20 +149,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1d6a1e1dec50c52f0800000000000000
-      internalID: -982904232830982447
+      spriteID: 1c076945457da4210800000000000000
+      internalID: 1318102598155661505
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk_2
+      name: WarriorUpAttack03_2
       rect:
         serializedVersion: 2
-        x: 299
-        y: 0
-        width: 43
-        height: 66
+        x: 107
+        y: 13
+        width: 24
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -177,20 +171,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 984096a69a2512bf0800000000000000
-      internalID: -350908408369970039
+      spriteID: dec2d1050956c00b0800000000000000
+      internalID: -5761118152819921683
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk_3
+      name: WarriorUpAttack03_3
       rect:
         serializedVersion: 2
-        x: 422
-        y: 0
-        width: 42
-        height: 66
+        x: 155
+        y: 13
+        width: 24
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -199,20 +193,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 320c9fd05685de4b0800000000000000
-      internalID: -5409570386352685021
+      spriteID: 8ee8f8b7aae85fe60800000000000000
+      internalID: 7995453576334773992
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk_4
+      name: WarriorUpAttack03_4
       rect:
         serializedVersion: 2
-        x: 554
-        y: 0
-        width: 35
-        height: 66
+        x: 203
+        y: 11
+        width: 24
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -221,52 +215,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9b4e719c394b09510800000000000000
-      internalID: 1553940418269799609
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Walk_5
-      rect:
-        serializedVersion: 2
-        x: 688
-        y: 0
-        width: 26
-        height: 66
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2b3cb802166e88120800000000000000
-      internalID: 2416434504916517810
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Walk_6
-      rect:
-        serializedVersion: 2
-        x: 817
-        y: 0
-        width: 29
-        height: 66
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 06428da6195d7c6a0800000000000000
-      internalID: -6428935122508569504
+      spriteID: 11a2b01c440a5a000800000000000000
+      internalID: 46619588314212881
       vertices: []
       indices: 
       edges: []
@@ -275,7 +225,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: dc5a1a4d09cad0f42a2218afb1774140
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -285,13 +235,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Walk_0: 4035959289877228764
-      Walk_1: -982904232830982447
-      Walk_2: -350908408369970039
-      Walk_3: -5409570386352685021
-      Walk_4: 1553940418269799609
-      Walk_5: 2416434504916517810
-      Walk_6: -6428935122508569504
+      WarriorUpAttack03_0: 8656239647332741157
+      WarriorUpAttack03_1: 1318102598155661505
+      WarriorUpAttack03_2: -5761118152819921683
+      WarriorUpAttack03_3: 7995453576334773992
+      WarriorUpAttack03_4: 46619588314212881
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,28 +1,25 @@
 fileFormatVersion: 2
-guid: ee6d6635f638aae46be92b5f22a660e3
+guid: f5209efec7a775d43844e6c8fbc9ffc6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4035959289877228764
-    second: Walk_0
+      213: 8017309271889830299
+    second: WarriorDownAttack03_0
   - first:
-      213: -982904232830982447
-    second: Walk_1
+      213: 6246664858666975872
+    second: WarriorDownAttack03_1
   - first:
-      213: -350908408369970039
-    second: Walk_2
+      213: 373244048020713335
+    second: WarriorDownAttack03_2
   - first:
-      213: -5409570386352685021
-    second: Walk_3
+      213: -1642746721262925758
+    second: WarriorDownAttack03_3
   - first:
-      213: 1553940418269799609
-    second: Walk_4
+      213: 3343646327966718749
+    second: WarriorDownAttack03_4
   - first:
-      213: 2416434504916517810
-    second: Walk_5
-  - first:
-      213: -6428935122508569504
-    second: Walk_6
+      213: -3898251307272557868
+    second: WarriorDownAttack03_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -118,13 +115,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Walk_0
+      name: WarriorDownAttack03_0
       rect:
         serializedVersion: 2
-        x: 49
-        y: 0
-        width: 31
-        height: 66
+        x: 11
+        y: 8
+        width: 24
+        height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,20 +130,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cdce119379b920830800000000000000
-      internalID: 4035959289877228764
+      spriteID: b9160752e44334f60800000000000000
+      internalID: 8017309271889830299
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk_1
+      name: WarriorDownAttack03_1
       rect:
         serializedVersion: 2
-        x: 173
-        y: 0
-        width: 45
-        height: 66
+        x: 60
+        y: 10
+        width: 24
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,20 +152,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1d6a1e1dec50c52f0800000000000000
-      internalID: -982904232830982447
+      spriteID: 082c2cbb79c90b650800000000000000
+      internalID: 6246664858666975872
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk_2
+      name: WarriorDownAttack03_2
       rect:
         serializedVersion: 2
-        x: 299
-        y: 0
-        width: 43
-        height: 66
+        x: 108
+        y: 12
+        width: 24
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -177,20 +174,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 984096a69a2512bf0800000000000000
-      internalID: -350908408369970039
+      spriteID: 77fadc0fb770e2500800000000000000
+      internalID: 373244048020713335
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk_3
+      name: WarriorDownAttack03_3
       rect:
         serializedVersion: 2
-        x: 422
-        y: 0
-        width: 42
-        height: 66
+        x: 156
+        y: 12
+        width: 24
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -199,20 +196,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 320c9fd05685de4b0800000000000000
-      internalID: -5409570386352685021
+      spriteID: 2488f278f8ac339e0800000000000000
+      internalID: -1642746721262925758
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk_4
+      name: WarriorDownAttack03_4
       rect:
         serializedVersion: 2
-        x: 554
-        y: 0
-        width: 35
-        height: 66
+        x: 160
+        y: 37
+        width: 16
+        height: 11
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -221,20 +218,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9b4e719c394b09510800000000000000
-      internalID: 1553940418269799609
+      spriteID: d1bdef0be94076e20800000000000000
+      internalID: 3343646327966718749
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Walk_5
+      name: WarriorDownAttack03_5
       rect:
         serializedVersion: 2
-        x: 688
-        y: 0
-        width: 26
-        height: 66
+        x: 204
+        y: 10
+        width: 24
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -243,30 +240,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2b3cb802166e88120800000000000000
-      internalID: 2416434504916517810
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Walk_6
-      rect:
-        serializedVersion: 2
-        x: 817
-        y: 0
-        width: 29
-        height: 66
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 06428da6195d7c6a0800000000000000
-      internalID: -6428935122508569504
+      spriteID: 4da21d00711a6e9c0800000000000000
+      internalID: -3898251307272557868
       vertices: []
       indices: 
       edges: []
@@ -275,7 +250,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: dc5a1a4d09cad0f42a2218afb1774140
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -285,13 +260,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Walk_0: 4035959289877228764
-      Walk_1: -982904232830982447
-      Walk_2: -350908408369970039
-      Walk_3: -5409570386352685021
-      Walk_4: 1553940418269799609
-      Walk_5: 2416434504916517810
-      Walk_6: -6428935122508569504
+      WarriorDownAttack03_0: 8017309271889830299
+      WarriorDownAttack03_1: 6246664858666975872
+      WarriorDownAttack03_2: 373244048020713335
+      WarriorDownAttack03_3: -1642746721262925758
+      WarriorDownAttack03_4: 3343646327966718749
+      WarriorDownAttack03_5: -3898251307272557868
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
