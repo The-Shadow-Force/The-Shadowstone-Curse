@@ -193,6 +193,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1361621597}
   m_SourcePrefab: {fileID: 100100000, guid: 72131f765a348fc48b1de19094be4b3f, type: 3}
+--- !u!4 &1202806423 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5829633531715991075, guid: 62e544b4bde032c408a8c63cb5962ff5, type: 3}
+  m_PrefabInstance: {fileID: 5567281857497991867}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1221862655
 GameObject:
   m_ObjectHideFlags: 0
@@ -2245,6 +2250,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9032386303848945396, guid: 62e544b4bde032c408a8c63cb5962ff5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5567281857497991875}
+    - targetCorrespondingSourceObject: {fileID: 9032386303848945396, guid: 62e544b4bde032c408a8c63cb5962ff5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5567281857497991877}
+    - targetCorrespondingSourceObject: {fileID: 9032386303848945396, guid: 62e544b4bde032c408a8c63cb5962ff5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5567281857497991876}
   m_SourcePrefab: {fileID: 100100000, guid: 62e544b4bde032c408a8c63cb5962ff5, type: 3}
 --- !u!1 &5567281857497991868 stripped
 GameObject:
@@ -2300,6 +2311,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilemap: {fileID: 1475375375}
   padding: 0.5
+--- !u!114 &5567281857497991876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5567281857497991868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 820f5474eb5fa184aab5d9efb605b2ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 5
+--- !u!114 &5567281857497991877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5567281857497991868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d51b90c46af5ae41a8c3ba538a4dc8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackPoint: {fileID: 1202806423}
+  attackRange: 0.5
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  damage: 1
+  animator: {fileID: 5567281857497991869}
+  offset: 0.5
 --- !u!1001 &6562765655349311081
 PrefabInstance:
   m_ObjectHideFlags: 0
