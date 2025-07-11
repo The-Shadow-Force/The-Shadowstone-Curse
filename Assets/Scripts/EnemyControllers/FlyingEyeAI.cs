@@ -146,7 +146,7 @@ public class FlyingEyeAI : MonoBehaviour
             }
             else
             {
-                Debug.Log(gameObject.name + " cắn hụt!");
+                //Debug.Log(gameObject.name + " cắn hụt!");
             }
         }
 

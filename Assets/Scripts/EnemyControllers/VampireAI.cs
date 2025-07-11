@@ -126,7 +126,7 @@ public class VampirenAI : MonoBehaviour
         }
         else
         {
-            Debug.Log(gameObject.name + " đánh hụt!");
+            //Debug.Log(gameObject.name + " đánh hụt!");
         }
     }
 

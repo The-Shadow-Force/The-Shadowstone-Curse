@@ -29,7 +29,7 @@ public class CharacterStats : MonoBehaviour
     {
         currentHealth -= damageAmount;
         currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth); // Đảm bảo máu không âm hoặc vượt max
-        Debug.Log(transform.name + " nhận " + damageAmount + " sát thương.");
+        //Debug.Log(transform.name + " nhận " + damageAmount + " sát thương.");
 
         OnStatsChanged?.Invoke(); // Phát sự kiện khi máu thay đổi
         // Kiểm tra nếu hết máu

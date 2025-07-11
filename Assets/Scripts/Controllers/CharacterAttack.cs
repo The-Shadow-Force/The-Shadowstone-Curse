@@ -43,8 +43,17 @@ public class CharacterAttack : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            Debug.Log("Hit " + enemy.name);
-            //enemy.GetComponent<EnemyHealth>()?.TakeDamage(damage); nào có thì bỏ comment
+            if (enemy.CompareTag("Orc") || enemy.CompareTag("Flying_Eye") ||
+                enemy.CompareTag("Skeleton") || enemy.CompareTag("Vampire"))
+            {
+                //Debug.Log("Hit " + enemy.name);
+
+                CharacterStats stats = enemy.GetComponent<CharacterStats>();
+                if (stats != null)
+                {
+                    stats.TakeDamage(10);
+                }
+            }
         }
     }
 
