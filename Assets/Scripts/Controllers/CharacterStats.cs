@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
@@ -32,12 +33,12 @@ public class CharacterStats : MonoBehaviour
         //Debug.Log(transform.name + " nhận " + damageAmount + " sát thương.");
 
         OnStatsChanged?.Invoke(); // Phát sự kiện khi máu thay đổi
-        // Kiểm tra nếu hết máu
-        if (currentHealth <= 0)
-        {
-            currentHealth = 0;
-            Die();
-        }
+        //// Kiểm tra nếu hết máu
+        //if (currentHealth <= 0)
+        //{
+        //    currentHealth = 0;
+        //    Die();
+        //}
     }
 
     public bool UseMana(float amount)
@@ -64,6 +65,13 @@ public class CharacterStats : MonoBehaviour
         // Đây là nơi xử lý cái chết chung, ví dụ:
         Debug.Log(transform.name + " đã chết.");
         // Có thể thêm hiệu ứng nổ, âm thanh, sau đó hủy đối tượng
+        StartCoroutine(DestroyAfterDelay(0.8f));
+    }
+
+    private IEnumerator DestroyAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
         Destroy(gameObject);
     }
+
 }

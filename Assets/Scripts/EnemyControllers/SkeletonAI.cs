@@ -28,6 +28,7 @@ public class SkeletonAI : MonoBehaviour
 
     private Vector3 initialPosition;
     private Vector3 patrolTarget;
+    private bool isAttacking = false;
 
     void Awake()
     {
@@ -51,6 +52,12 @@ public class SkeletonAI : MonoBehaviour
     void Update()
     {
         if (player == null || playerStats == null || playerStats.currentHealth <= 0)
+        {
+            animator.SetBool("isRunning", false);
+            return;
+        }
+
+        if (isAttacking)
         {
             animator.SetBool("isRunning", false);
             return;
@@ -105,10 +112,16 @@ public class SkeletonAI : MonoBehaviour
     {
         if (Time.time >= nextAttackTime)
         {
+            isAttacking = true;
             animator.SetTrigger("Attack");
             Invoke(nameof(DealDamageIfInRange), dealDamageAfter);
+            Invoke(nameof(EndAttack), dealDamageAfter + 0.3f); // ✳️ Kết thúc animation sau 0.3s
             nextAttackTime = Time.time + timeBetweenAttacks;
         }
+    }
+    private void EndAttack()
+    {
+        isAttacking = false;
     }
 
     private void DealDamageIfInRange()

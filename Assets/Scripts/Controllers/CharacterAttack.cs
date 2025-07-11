@@ -44,7 +44,7 @@ public class CharacterAttack : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             if (enemy.CompareTag("Orc") || enemy.CompareTag("Flying_Eye") ||
-    enemy.CompareTag("Skeleton") || enemy.CompareTag("Vampire"))
+    enemy.CompareTag("Skeleton") || enemy.CompareTag("Vampire") || enemy.CompareTag("Rat"))
             {
                 Debug.Log("Hit " + enemy.name);
 
@@ -56,6 +56,11 @@ public class CharacterAttack : MonoBehaviour
                     if (enemyAnimator != null)
                     {
                         enemyAnimator.SetTrigger("Hit"); // ✅ Bật animation Hit ở đúng đối tượng bị đánh
+                        if (stats.currentHealth <= 0)
+                        {
+                            enemyAnimator.SetTrigger("Die"); // ✅ Bật animation Die ở đúng đối tượng bị đánh
+                            stats.Die(); // Gọi hàm Die nếu có
+                        }
                     }
                 }
             }
