@@ -44,14 +44,19 @@ public class CharacterAttack : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             if (enemy.CompareTag("Orc") || enemy.CompareTag("Flying_Eye") ||
-                enemy.CompareTag("Skeleton") || enemy.CompareTag("Vampire"))
+    enemy.CompareTag("Skeleton") || enemy.CompareTag("Vampire"))
             {
-                //Debug.Log("Hit " + enemy.name);
+                Debug.Log("Hit " + enemy.name);
 
                 CharacterStats stats = enemy.GetComponent<CharacterStats>();
                 if (stats != null)
                 {
                     stats.TakeDamage(10);
+                    Animator enemyAnimator = enemy.GetComponent<Animator>();
+                    if (enemyAnimator != null)
+                    {
+                        enemyAnimator.SetTrigger("Hit"); // ✅ Bật animation Hit ở đúng đối tượng bị đánh
+                    }
                 }
             }
         }
