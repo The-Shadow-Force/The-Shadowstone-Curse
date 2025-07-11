@@ -193,6 +193,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1361621597}
   m_SourcePrefab: {fileID: 100100000, guid: 72131f765a348fc48b1de19094be4b3f, type: 3}
+--- !u!4 &786887059 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1344713279684502323, guid: 62e544b4bde032c408a8c63cb5962ff5, type: 3}
+  m_PrefabInstance: {fileID: 5567281857497991867}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1202806423 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5829633531715991075, guid: 62e544b4bde032c408a8c63cb5962ff5, type: 3}
@@ -2173,6 +2178,22 @@ PrefabInstance:
       propertyPath: m_CollisionDetection
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1344713279684502323, guid: 62e544b4bde032c408a8c63cb5962ff5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344713279684502323, guid: 62e544b4bde032c408a8c63cb5962ff5, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.0017820001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344713279684502323, guid: 62e544b4bde032c408a8c63cb5962ff5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344713279684502323, guid: 62e544b4bde032c408a8c63cb5962ff5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2007837073908774451, guid: 62e544b4bde032c408a8c63cb5962ff5, type: 3}
       propertyPath: m_Size.x
       value: 0.19850284
@@ -2229,6 +2250,10 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 0.34
       objectReference: {fileID: 0}
+    - target: {fileID: 6481805150754020600, guid: 62e544b4bde032c408a8c63cb5962ff5, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9032386303848945396, guid: 62e544b4bde032c408a8c63cb5962ff5, type: 3}
       propertyPath: m_Name
       value: WarriorPlayer
@@ -2256,6 +2281,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9032386303848945396, guid: 62e544b4bde032c408a8c63cb5962ff5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5567281857497991876}
+    - targetCorrespondingSourceObject: {fileID: 9032386303848945396, guid: 62e544b4bde032c408a8c63cb5962ff5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5567281857497991882}
   m_SourcePrefab: {fileID: 100100000, guid: 62e544b4bde032c408a8c63cb5962ff5, type: 3}
 --- !u!1 &5567281857497991868 stripped
 GameObject:
@@ -2323,7 +2351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 820f5474eb5fa184aab5d9efb605b2ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
+  maxHealth: 100
 --- !u!114 &5567281857497991877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2337,13 +2365,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPoint: {fileID: 1202806423}
-  attackRange: 0.5
+  attackRange: 0.25
   enemyLayers:
     serializedVersion: 2
     m_Bits: 0
   damage: 1
   animator: {fileID: 5567281857497991869}
-  offset: 0.5
+  offset: 0.15
+--- !u!114 &5567281857497991882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5567281857497991868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef07d3ff78c2f9a42b38559fda05e8e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackPoint: {fileID: 1202806423}
+  skillSpawnPoint: {fileID: 786887059}
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  skill1: {fileID: 11400000, guid: d1f94fe357793e84b805c0da5933b474, type: 2}
+  skill2: {fileID: 11400000, guid: a29b72f38370db94283cfa1e2331e310, type: 2}
+  ultimate: {fileID: 11400000, guid: ef4eba10c5b2b3a45bc0eb5e00e76072, type: 2}
+  animator: {fileID: 5567281857497991869}
+  audioSource: {fileID: 0}
 --- !u!1001 &6562765655349311081
 PrefabInstance:
   m_ObjectHideFlags: 0

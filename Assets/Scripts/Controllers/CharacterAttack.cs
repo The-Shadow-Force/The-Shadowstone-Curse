@@ -4,7 +4,7 @@ public class CharacterAttack : MonoBehaviour
 {
     [Header("Attack Settings")]
     public Transform attackPoint;
-    public float attackRange = 0.5f;
+    public float attackRange = 0.25f;
     public LayerMask enemyLayers;
     public int damage = 1;
 
@@ -43,10 +43,26 @@ public class CharacterAttack : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            Debug.Log("Hit " + enemy.name);
-            //enemy.GetComponent<EnemyHealth>()?.TakeDamage(damage); nào có thì bỏ comment
+            // Tính vector từ player đến enemy
+            Vector2 toEnemy = (enemy.transform.position - attackPoint.position).normalized;
+
+            // Vector hướng chém (dựa trên LastMoveX/Y)
+            Vector2 attackDirection = new Vector2(
+                animator.GetFloat("LastMoveX"),
+                animator.GetFloat("LastMoveY")
+            ).normalized;
+
+            // Tính góc giữa hướng chém và enemy
+            float dot = Vector2.Dot(toEnemy, attackDirection);
+
+            if (dot > 0) //  > 0 nghĩa là nằm trong nửa phía trước (0°–180°)
+            {
+                Debug.Log("Hit " + enemy.name);
+                // enemy.GetComponent<EnemyHealth>()?.TakeDamage(damage); khi nào có thì bỏ comment dòng này
+            }
         }
     }
+
 
     private void OnDrawGizmosSelected()
     {
