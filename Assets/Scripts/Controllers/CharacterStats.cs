@@ -18,6 +18,8 @@ public class CharacterStats : MonoBehaviour
     public event Action OnStatsChanged;
     // === CÁC HÀM CHUNG ===
 
+    public bool isPlayer = false; // Biến để xác định đây có phải là nhân vật người chơi hay không
+
     // Hàm được gọi khi đối tượng được tạo ra
     private void Awake()
     {
@@ -34,11 +36,11 @@ public class CharacterStats : MonoBehaviour
 
         OnStatsChanged?.Invoke(); // Phát sự kiện khi máu thay đổi
         //// Kiểm tra nếu hết máu
-        //if (currentHealth <= 0)
-        //{
-        //    currentHealth = 0;
-        //    Die();
-        //}
+        if (currentHealth <= 0 && isPlayer)
+        {
+            currentHealth = 0;
+            Die();
+        }
     }
 
     public bool UseMana(float amount)
@@ -66,6 +68,14 @@ public class CharacterStats : MonoBehaviour
         Debug.Log(transform.name + " đã chết.");
         // Có thể thêm hiệu ứng nổ, âm thanh, sau đó hủy đối tượng
         StartCoroutine(DestroyAfterDelay(0.8f));
+    }
+
+    public virtual void BossDie()
+    {
+        // Đây là nơi xử lý cái chết chung, ví dụ:
+        Debug.Log(transform.name + " đã chết.");
+        // Có thể thêm hiệu ứng nổ, âm thanh, sau đó hủy đối tượng
+        StartCoroutine(DestroyAfterDelay(1f));
     }
 
     private IEnumerator DestroyAfterDelay(float delay)

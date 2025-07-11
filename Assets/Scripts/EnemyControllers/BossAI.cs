@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class VampireAI : MonoBehaviour
+public class BossAI : MonoBehaviour
 {
     [Header("Tham Chiếu")]
     private Transform player;
@@ -16,6 +16,12 @@ public class VampireAI : MonoBehaviour
     [SerializeField] private float timeBetweenAttacks = 1.5f;
     [SerializeField] private float dealDamageAfter = 0.2f;
 
+    [Header("Triệu hồi Hắc Hỏa")]
+    [SerializeField] private GameObject darkFlamePrefab;
+    [SerializeField] private Transform[] summonPositions;
+    [SerializeField] private float summonDuration = 2f;
+    private float nextSummonTime = 0f;
+
     [Header("Tuần Tra")]
     [SerializeField] private float patrolRadius = 3f;
     [SerializeField] private float patrolSpeed = 1.5f;
@@ -28,6 +34,15 @@ public class VampireAI : MonoBehaviour
     private Vector3 patrolTarget;
     private bool isMoving = false;
     private bool isAttacking = false;
+    private bool isSummoning = false;
+    private bool isTeleporting = false;
+
+    [Header("Dịch Chuyển")]
+    [SerializeField] private float idleAfterSummonDuration = 5f; // Idle 5s sau khi triệu hồi
+    [SerializeField] private float teleportCastDuration = 0.8f;
+    [SerializeField] private float teleportVanishDuration = 1f;
+    [SerializeField] private string disappearTrigger = "Disappear";
+    [SerializeField] private string reappearTrigger = "Reappear";
 
     void Awake()
     {
@@ -50,13 +65,22 @@ public class VampireAI : MonoBehaviour
 
     void Update()
     {
+        if (enemyStats.currentHealth <= 200)
+        {
+            if (!isSummoning && Time.time >= nextSummonTime)
+            {
+                StartCoroutine(SummonDarkFlames());
+                return;
+            }
+        }
+
         if (player == null || playerStats == null || playerStats.currentHealth <= 0)
         {
             animator.SetBool("isRunning", false);
             return;
         }
 
-        if (isAttacking)
+        if (isAttacking || isSummoning || isTeleporting)
         {
             animator.SetBool("isRunning", false);
             return;
@@ -93,6 +117,65 @@ public class VampireAI : MonoBehaviour
         }
     }
 
+    private IEnumerator SummonDarkFlames()
+    {
+        isSummoning = true;
+        nextSummonTime = Time.time + 20f;
+        animator.SetTrigger("Summon");
+
+        yield return new WaitForSeconds(summonDuration);
+
+        foreach (Transform pos in summonPositions)
+        {
+            Instantiate(darkFlamePrefab, pos.position, Quaternion.identity);
+        }
+
+        // Idle đứng im 5 giây sau triệu hồi
+        animator.SetBool("isRunning", false);
+        yield return new WaitForSeconds(idleAfterSummonDuration);
+
+        // Nếu máu ≤ 100 → thực hiện teleport
+        if (enemyStats.currentHealth <= 100)
+        {
+            StartCoroutine(TeleportNearPlayer());
+        }
+
+        isSummoning = false;
+    }
+
+    private IEnumerator TeleportNearPlayer()
+    {
+        if (player == null) yield break;
+
+        isTeleporting = true;
+
+        animator.SetTrigger(disappearTrigger);
+        SetInvisible(true);
+
+        yield return new WaitForSeconds(teleportVanishDuration);
+
+        Vector3 directionToBoss = (transform.position - player.position).normalized;
+        float teleportDistance = Random.Range(1f, 2f);
+        Vector3 newPos = player.position + directionToBoss * teleportDistance;
+
+        transform.position = newPos;
+
+        animator.SetTrigger(reappearTrigger);
+        SetInvisible(false);
+
+        yield return new WaitForSeconds(0.3f);
+
+        isTeleporting = false;
+    }
+
+    private void SetInvisible(bool state)
+    {
+        spriteRenderer.enabled = !state;
+
+        Collider2D col = GetComponent<Collider2D>();
+        if (col != null) col.enabled = !state;
+    }
+
     private void Chase()
     {
         Vector3 direction = (player.position - transform.position).normalized;
@@ -116,11 +199,12 @@ public class VampireAI : MonoBehaviour
             animator.SetTrigger("Attack");
 
             Invoke(nameof(DealDamageIfInRange), dealDamageAfter);
-            Invoke(nameof(EndAttack), dealDamageAfter + 0.5f); // Thoát trạng thái tấn công sau 0.5s
+            Invoke(nameof(EndAttack), dealDamageAfter + 0.5f);
 
             nextAttackTime = Time.time + timeBetweenAttacks;
         }
     }
+
     private void EndAttack()
     {
         isAttacking = false;
@@ -136,12 +220,10 @@ public class VampireAI : MonoBehaviour
         if (distanceToPlayer <= attackRange)
         {
             playerStats.TakeDamage(enemyStats.damage);
-            enemyStats.currentHealth += 10;
-            enemyStats.currentHealth = Mathf.Min(enemyStats.currentHealth, enemyStats.maxHealth);
         }
         else
         {
-            //Debug.Log(gameObject.name + " đánh hụt!");
+            Debug.Log(gameObject.name + " đánh hụt!");
         }
     }
 
@@ -150,11 +232,9 @@ public class VampireAI : MonoBehaviour
         isPatrolling = true;
         isMoving = true;
 
-        // Chọn điểm tuần tra ngẫu nhiên trong hình tròn quanh vị trí gốc
         Vector2 randomCircle = Random.insideUnitCircle * patrolRadius;
         patrolTarget = initialPosition + new Vector3(randomCircle.x, randomCircle.y, 0f);
 
-        // Xoay mặt theo hướng tuần tra
         Vector3 dir = patrolTarget - transform.position;
         if (dir.x != 0)
         {

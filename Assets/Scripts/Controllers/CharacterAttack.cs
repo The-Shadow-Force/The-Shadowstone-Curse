@@ -44,9 +44,9 @@ public class CharacterAttack : MonoBehaviour
         foreach (Collider2D enemy in hitEnemies)
         {
             if (enemy.CompareTag("Orc") || enemy.CompareTag("Flying_Eye") ||
-    enemy.CompareTag("Skeleton") || enemy.CompareTag("Vampire") || enemy.CompareTag("Rat"))
+    enemy.CompareTag("Skeleton") || enemy.CompareTag("Vampire") || enemy.CompareTag("Rat") || enemy.CompareTag("Boss"))
             {
-                Debug.Log("Hit " + enemy.name);
+                //Debug.Log("Hit " + enemy.name);
 
                 CharacterStats stats = enemy.GetComponent<CharacterStats>();
                 if (stats != null)
@@ -55,11 +55,22 @@ public class CharacterAttack : MonoBehaviour
                     Animator enemyAnimator = enemy.GetComponent<Animator>();
                     if (enemyAnimator != null)
                     {
-                        enemyAnimator.SetTrigger("Hit"); // ✅ Bật animation Hit ở đúng đối tượng bị đánh
-                        if (stats.currentHealth <= 0)
+                        if (!enemy.CompareTag("Boss"))
                         {
-                            enemyAnimator.SetTrigger("Die"); // ✅ Bật animation Die ở đúng đối tượng bị đánh
-                            stats.Die(); // Gọi hàm Die nếu có
+                            enemyAnimator.SetTrigger("Hit"); // ✅ Bật animation Hit ở đúng đối tượng bị đánh
+                            if (stats.currentHealth <= 0)
+                            {
+                                enemyAnimator.SetTrigger("Die"); // ✅ Bật animation Die ở đúng đối tượng bị đánh
+                                stats.Die(); // Gọi hàm Die nếu có
+                            }
+                        } 
+                        else
+                        {
+                            if (stats.currentHealth <= 0)
+                            {
+                                enemyAnimator.SetTrigger("Die"); // ✅ Bật animation Die ở đúng đối tượng bị đánh
+                                stats.BossDie(); // Gọi hàm Die nếu có
+                            }
                         }
                     }
                 }
