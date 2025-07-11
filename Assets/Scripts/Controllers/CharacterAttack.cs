@@ -4,7 +4,7 @@ public class CharacterAttack : MonoBehaviour
 {
     [Header("Attack Settings")]
     public Transform attackPoint;
-    public float attackRange = 0.5f;
+    public float attackRange = 0.25f;
     public LayerMask enemyLayers;
     public int damage = 1;
 
@@ -43,7 +43,23 @@ public class CharacterAttack : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            if (enemy.CompareTag("Orc") || enemy.CompareTag("Flying_Eye") ||
+            // Tính vector từ player đến enemy
+            Vector2 toEnemy = (enemy.transform.position - attackPoint.position).normalized;
+
+            // Vector hướng chém (dựa trên LastMoveX/Y)
+            Vector2 attackDirection = new Vector2(
+                animator.GetFloat("LastMoveX"),
+                animator.GetFloat("LastMoveY")
+            ).normalized;
+
+            // Tính góc giữa hướng chém và enemy
+            float dot = Vector2.Dot(toEnemy, attackDirection);
+
+            if (dot > 0) //  > 0 nghĩa là nằm trong nửa phía trước (0°–180°)
+            {
+                Debug.Log("Hit " + enemy.name);
+
+                if (enemy.CompareTag("Orc") || enemy.CompareTag("Flying_Eye") ||
     enemy.CompareTag("Skeleton") || enemy.CompareTag("Vampire") || enemy.CompareTag("Rat") || enemy.CompareTag("Boss"))
             {
                 //Debug.Log("Hit " + enemy.name);
@@ -75,8 +91,10 @@ public class CharacterAttack : MonoBehaviour
                     }
                 }
             }
+            }
         }
     }
+
 
     private void OnDrawGizmosSelected()
     {

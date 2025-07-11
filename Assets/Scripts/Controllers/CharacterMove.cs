@@ -85,4 +85,16 @@ public class CharacterMove : MonoBehaviour
         }
 
     }
+
+    public void DisableInputTemporarily(float duration)
+    {
+        inputActions.Disable();
+        Invoke(nameof(ReenableInput), duration);
+    }
+
+    private void ReenableInput()
+    {
+        inputActions.Enable();
+    }
+
 }
