@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1344713279684502323}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: SkillSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,8 +56,8 @@ Transform:
   m_GameObject: {fileID: 6481805150754020600}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.019, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.01, y: 0.0017820001, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 87750834945254052}
@@ -74,12 +74,13 @@ GameObject:
   - component: {fileID: 6274630799087303127}
   - component: {fileID: 2007837073908774451}
   - component: {fileID: 959787535863518609}
-  - component: {fileID: 9173425439563353432}
-  - component: {fileID: 2078378595483435309}
-  - component: {fileID: 3439554186253653677}
-  - component: {fileID: 3620299977848702309}
-  - component: {fileID: 7011760000941623848}
   - component: {fileID: 8581323287011603066}
+  - component: {fileID: 7691779050667631102}
+  - component: {fileID: 175599187682556202}
+  - component: {fileID: 8865812079052420498}
+  - component: {fileID: 2129693404544264556}
+  - component: {fileID: 2084529369059082112}
+  - component: {fileID: 6504993684984853095}
   m_Layer: 6
   m_Name: WarriorPlayer
   m_TagString: Player
@@ -232,7 +233,26 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!95 &9173425439563353432
+--- !u!114 &8581323287011603066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9032386303848945396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b02e8b6ba8d011247822cfaacdfab349, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 200
+  currentHealth: 200
+  damage: 10
+  speed: 5
+  maxMana: 50
+  currentMana: 0
+  isPlayer: 1
+--- !u!95 &7691779050667631102
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
@@ -254,7 +274,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2078378595483435309
+--- !u!114 &175599187682556202
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -267,7 +287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
---- !u!114 &3439554186253653677
+--- !u!114 &8865812079052420498
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -281,7 +301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilemap: {fileID: 0}
   padding: 0.5
---- !u!114 &3620299977848702309
+--- !u!114 &2129693404544264556
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -294,14 +314,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPoint: {fileID: 5829633531715991075}
-  attackRange: 0.5
+  attackRange: 0.25
   enemyLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   damage: 1
-  animator: {fileID: 9173425439563353432}
-  offset: 0.5
---- !u!114 &7011760000941623848
+  animator: {fileID: 7691779050667631102}
+  offset: 0.15
+--- !u!114 &2084529369059082112
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -313,8 +333,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 820f5474eb5fa184aab5d9efb605b2ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
---- !u!114 &8581323287011603066
+  maxHealth: 100
+--- !u!114 &6504993684984853095
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -323,12 +343,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 9032386303848945396}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b02e8b6ba8d011247822cfaacdfab349, type: 3}
+  m_Script: {fileID: 11500000, guid: ef07d3ff78c2f9a42b38559fda05e8e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 100
-  damage: 10
-  speed: 5
-  maxMana: 50
-  currentMana: 0
+  attackPoint: {fileID: 5829633531715991075}
+  skillSpawnPoint: {fileID: 1344713279684502323}
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  skill1: {fileID: 11400000, guid: d1f94fe357793e84b805c0da5933b474, type: 2}
+  skill2: {fileID: 11400000, guid: a29b72f38370db94283cfa1e2331e310, type: 2}
+  ultimate: {fileID: 11400000, guid: ef4eba10c5b2b3a45bc0eb5e00e76072, type: 2}
+  animator: {fileID: 7691779050667631102}
+  audioSource: {fileID: 0}

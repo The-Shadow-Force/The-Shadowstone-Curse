@@ -43,23 +43,8 @@ public class CharacterAttack : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            // Tính vector từ player đến enemy
-            Vector2 toEnemy = (enemy.transform.position - attackPoint.position).normalized;
-
-            // Vector hướng chém (dựa trên LastMoveX/Y)
-            Vector2 attackDirection = new Vector2(
-                animator.GetFloat("LastMoveX"),
-                animator.GetFloat("LastMoveY")
-            ).normalized;
-
-            // Tính góc giữa hướng chém và enemy
-            float dot = Vector2.Dot(toEnemy, attackDirection);
-
-            if (dot > 0) //  > 0 nghĩa là nằm trong nửa phía trước (0°–180°)
-            {
-                Debug.Log("Hit " + enemy.name);
-
-                if (enemy.CompareTag("Orc") || enemy.CompareTag("Flying_Eye") ||
+            Debug.Log("Enemy detected: " + enemy.name);
+            if (enemy.CompareTag("Orc") || enemy.CompareTag("Flying_Eye") ||
     enemy.CompareTag("Skeleton") || enemy.CompareTag("Vampire") || enemy.CompareTag("Rat") || enemy.CompareTag("Boss"))
             {
                 //Debug.Log("Hit " + enemy.name);
@@ -79,7 +64,7 @@ public class CharacterAttack : MonoBehaviour
                                 enemyAnimator.SetTrigger("Die"); // ✅ Bật animation Die ở đúng đối tượng bị đánh
                                 stats.Die(); // Gọi hàm Die nếu có
                             }
-                        } 
+                        }
                         else
                         {
                             if (stats.currentHealth <= 0)
@@ -91,6 +76,24 @@ public class CharacterAttack : MonoBehaviour
                     }
                 }
             }
+
+            // Tính vector từ player đến enemy
+            Vector2 toEnemy = (enemy.transform.position - attackPoint.position).normalized;
+
+            // Vector hướng chém (dựa trên LastMoveX/Y)
+            Vector2 attackDirection = new Vector2(
+                animator.GetFloat("LastMoveX"),
+                animator.GetFloat("LastMoveY")
+            ).normalized;
+
+            // Tính góc giữa hướng chém và enemy
+            float dot = Vector2.Dot(toEnemy, attackDirection);
+
+            if (dot > 0) //  > 0 nghĩa là nằm trong nửa phía trước (0°–180°)
+            {
+                Debug.Log("Hit " + enemy.name);
+
+                
             }
         }
     }
