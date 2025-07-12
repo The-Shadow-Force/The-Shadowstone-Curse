@@ -65,7 +65,7 @@ public class CharacterStats : MonoBehaviour
     public virtual void Die()
     {
         // Đây là nơi xử lý cái chết chung, ví dụ:
-        Debug.Log(transform.name + " đã chết.");
+        //Debug.Log(transform.name + " đã chết.");
         // Có thể thêm hiệu ứng nổ, âm thanh, sau đó hủy đối tượng
         StartCoroutine(DestroyAfterDelay(0.8f));
     }
@@ -73,7 +73,7 @@ public class CharacterStats : MonoBehaviour
     public virtual void BossDie()
     {
         // Đây là nơi xử lý cái chết chung, ví dụ:
-        Debug.Log(transform.name + " đã chết.");
+        //Debug.Log(transform.name + " đã chết.");
         // Có thể thêm hiệu ứng nổ, âm thanh, sau đó hủy đối tượng
         StartCoroutine(DestroyAfterDelay(1f));
     }

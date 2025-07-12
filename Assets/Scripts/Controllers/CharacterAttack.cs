@@ -43,7 +43,7 @@ public class CharacterAttack : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            Debug.Log("Enemy detected: " + enemy.name);
+            //Debug.Log("Enemy detected: " + enemy.name);
             if (enemy.CompareTag("Orc") || enemy.CompareTag("Flying_Eye") ||
     enemy.CompareTag("Skeleton") || enemy.CompareTag("Vampire") || enemy.CompareTag("Rat") || enemy.CompareTag("Boss"))
             {
@@ -91,7 +91,7 @@ public class CharacterAttack : MonoBehaviour
 
             if (dot > 0) //  > 0 nghĩa là nằm trong nửa phía trước (0°–180°)
             {
-                Debug.Log("Hit " + enemy.name);
+                //Debug.Log("Hit " + enemy.name);
 
                 
             }
