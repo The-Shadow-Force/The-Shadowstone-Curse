@@ -99,6 +99,10 @@ public class PlayerSkillController : MonoBehaviour
                             // hit.GetComponent<EnemyHealth>()?.TakeDamage(damage);
                         }
                     }
+                    if (skill.soundClip != null && audioSource != null)
+                    {
+                        audioSource.PlayOneShot(skill.soundClip);
+                    }
                 }
             }
         }
@@ -137,6 +141,8 @@ public class PlayerSkillController : MonoBehaviour
                 Animator anim = fx.GetComponent<Animator>();
                 if (anim != null)
                     anim.SetTrigger("Hit");
+                if (skill.soundClipOnHit != null)
+                    AudioSource.PlayClipAtPoint(skill.soundClipOnHit, fx.transform.position);
 
                 Collider2D[] hits = Physics2D.OverlapCircleAll(fx.transform.position, radius, enemyLayers);
                 foreach (var hit in hits)
@@ -184,7 +190,7 @@ public class PlayerSkillController : MonoBehaviour
             // Phát âm thanh
             if (skill.soundClip != null && audioSource != null)
             {
-                audioSource.PlayOneShot(skill.soundClip);
+                StartCoroutine(PlayRepeatedSound(skill.soundClip, 2, 0.8f)); // 3 lần, 
             }
         }
 
@@ -235,4 +241,15 @@ public class PlayerSkillController : MonoBehaviour
         if (skill1 != null)
             Gizmos.DrawWireSphere(attackPoint.position, skill1.GetRange());
     }
+
+    private System.Collections.IEnumerator PlayRepeatedSound(AudioClip clip, int times, float delay)
+    {
+        for (int i = 0; i < times; i++)
+        {
+            audioSource.PlayOneShot(clip);
+            yield return new WaitForSeconds(delay);
+        }
+    }
+
 }
+
