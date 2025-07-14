@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
@@ -17,6 +18,8 @@ public class CharacterStats : MonoBehaviour
     public event Action OnStatsChanged;
     // === CÁC HÀM CHUNG ===
 
+    public bool isPlayer = false; // Biến để xác định đây có phải là nhân vật người chơi hay không
+
     // Hàm được gọi khi đối tượng được tạo ra
     private void Awake()
     {
@@ -29,11 +32,11 @@ public class CharacterStats : MonoBehaviour
     {
         currentHealth -= damageAmount;
         currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth); // Đảm bảo máu không âm hoặc vượt max
-        Debug.Log(transform.name + " nhận " + damageAmount + " sát thương.");
+        //Debug.Log(transform.name + " nhận " + damageAmount + " sát thương.");
 
         OnStatsChanged?.Invoke(); // Phát sự kiện khi máu thay đổi
-        // Kiểm tra nếu hết máu
-        if (currentHealth <= 0)
+        //// Kiểm tra nếu hết máu
+        if (currentHealth <= 0 && isPlayer)
         {
             currentHealth = 0;
             Die();
@@ -62,8 +65,23 @@ public class CharacterStats : MonoBehaviour
     public virtual void Die()
     {
         // Đây là nơi xử lý cái chết chung, ví dụ:
-        Debug.Log(transform.name + " đã chết.");
+        //Debug.Log(transform.name + " đã chết.");
         // Có thể thêm hiệu ứng nổ, âm thanh, sau đó hủy đối tượng
+        StartCoroutine(DestroyAfterDelay(0.8f));
+    }
+
+    public virtual void BossDie()
+    {
+        // Đây là nơi xử lý cái chết chung, ví dụ:
+        //Debug.Log(transform.name + " đã chết.");
+        // Có thể thêm hiệu ứng nổ, âm thanh, sau đó hủy đối tượng
+        StartCoroutine(DestroyAfterDelay(1f));
+    }
+
+    private IEnumerator DestroyAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
         Destroy(gameObject);
     }
+
 }

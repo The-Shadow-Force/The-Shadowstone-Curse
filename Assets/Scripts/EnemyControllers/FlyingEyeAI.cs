@@ -55,7 +55,12 @@ public class FlyingEyeAI : MonoBehaviour
 
     void Update()
     {
-        if (isDiving || isReturningToInitial) return;
+        // Không làm gì nếu đang attack hoặc đang trở về vị trí ban đầu
+        if (isDiving || isReturningToInitial)
+        {
+            animator.SetBool("isFlying", false);
+            return;
+        }
 
         if (player == null || playerStats == null || playerStats.currentHealth <= 0)
         {
@@ -68,18 +73,23 @@ public class FlyingEyeAI : MonoBehaviour
         if (distanceToPlayer <= attackRange)
         {
             animator.SetBool("isFlying", false);
-            Attack();
+            StopAllCoroutines(); // ✳️ Ngắt tuần tra nếu đang tuần
+            isPatrolling = false;
+            Attack(); // ✳️ Bắt đầu attack → isDiving = true
         }
         else if (distanceToPlayer <= detectionRange)
         {
-            StopAllCoroutines();
-            isPatrolling = false;
-            Chase();
+            if (!isDiving)
+            {
+                StopAllCoroutines(); // ✳️ Dừng tuần tra
+                isPatrolling = false;
+                Chase(); // ✳️ Đuổi theo
+            }
         }
         else
         {
             animator.SetBool("isFlying", false);
-            if (!isPatrolling)
+            if (!isPatrolling && !isDiving)
             {
                 StartCoroutine(ReturnAndPatrol());
             }
@@ -146,7 +156,7 @@ public class FlyingEyeAI : MonoBehaviour
             }
             else
             {
-                Debug.Log(gameObject.name + " cắn hụt!");
+                //Debug.Log(gameObject.name + " cắn hụt!");
             }
         }
 

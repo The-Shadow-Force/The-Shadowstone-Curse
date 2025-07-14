@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class VampirenAI : MonoBehaviour
+public class VampireAI : MonoBehaviour
 {
     [Header("Tham Chiếu")]
     private Transform player;
@@ -27,6 +27,7 @@ public class VampirenAI : MonoBehaviour
     private Vector3 initialPosition;
     private Vector3 patrolTarget;
     private bool isMoving = false;
+    private bool isAttacking = false;
 
     void Awake()
     {
@@ -50,6 +51,12 @@ public class VampirenAI : MonoBehaviour
     void Update()
     {
         if (player == null || playerStats == null || playerStats.currentHealth <= 0)
+        {
+            animator.SetBool("isRunning", false);
+            return;
+        }
+
+        if (isAttacking)
         {
             animator.SetBool("isRunning", false);
             return;
@@ -105,10 +112,18 @@ public class VampirenAI : MonoBehaviour
     {
         if (Time.time >= nextAttackTime)
         {
+            isAttacking = true;
             animator.SetTrigger("Attack");
+
             Invoke(nameof(DealDamageIfInRange), dealDamageAfter);
+            Invoke(nameof(EndAttack), dealDamageAfter + 0.5f); // Thoát trạng thái tấn công sau 0.5s
+
             nextAttackTime = Time.time + timeBetweenAttacks;
         }
+    }
+    private void EndAttack()
+    {
+        isAttacking = false;
     }
 
     private void DealDamageIfInRange()
@@ -126,7 +141,7 @@ public class VampirenAI : MonoBehaviour
         }
         else
         {
-            Debug.Log(gameObject.name + " đánh hụt!");
+            //Debug.Log(gameObject.name + " đánh hụt!");
         }
     }
 

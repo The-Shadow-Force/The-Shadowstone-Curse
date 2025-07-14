@@ -27,6 +27,7 @@ public class OrcAI : MonoBehaviour
     private Vector3 initialPosition;
     private Vector3 patrolTarget;
     private bool isMoving = false;
+    private bool isAttacking = false;
 
     void Awake()
     {
@@ -50,6 +51,12 @@ public class OrcAI : MonoBehaviour
     void Update()
     {
         if (player == null || playerStats == null || playerStats.currentHealth <= 0)
+        {
+            animator.SetBool("isRunning", false);
+            return;
+        }
+
+        if (isAttacking)
         {
             animator.SetBool("isRunning", false);
             return;
@@ -105,6 +112,8 @@ public class OrcAI : MonoBehaviour
     {
         if (Time.time >= nextAttackTime)
         {
+            isAttacking = true;
+
             int randomAttack = Random.Range(0, 2);
             if (randomAttack == 0)
                 animator.SetTrigger("Attack1");
@@ -112,8 +121,14 @@ public class OrcAI : MonoBehaviour
                 animator.SetTrigger("Attack2");
 
             Invoke(nameof(DealDamageIfInRange), dealDamageAfter);
+            Invoke(nameof(EndAttack), dealDamageAfter + 0.3f); // ✳️ Kết thúc sau 0.3s (tuỳ theo animation)
+
             nextAttackTime = Time.time + timeBetweenAttacks;
         }
+    }
+    private void EndAttack()
+    {
+        isAttacking = false;
     }
 
     private void DealDamageIfInRange()
@@ -128,7 +143,7 @@ public class OrcAI : MonoBehaviour
         }
         else
         {
-            Debug.Log(gameObject.name + " đánh hụt!");
+            //Debug.Log(gameObject.name + " đánh hụt!");
         }
     }
 

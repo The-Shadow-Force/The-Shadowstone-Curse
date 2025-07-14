@@ -48,6 +48,40 @@ public class CharacterAttack : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
+            //Debug.Log("Enemy detected: " + enemy.name);
+            if (enemy.CompareTag("Orc") || enemy.CompareTag("Flying_Eye") ||
+    enemy.CompareTag("Skeleton") || enemy.CompareTag("Vampire") || enemy.CompareTag("Rat") || enemy.CompareTag("Boss"))
+            {
+                //Debug.Log("Hit " + enemy.name);
+
+                CharacterStats stats = enemy.GetComponent<CharacterStats>();
+                if (stats != null)
+                {
+                    stats.TakeDamage(10);
+                    Animator enemyAnimator = enemy.GetComponent<Animator>();
+                    if (enemyAnimator != null)
+                    {
+                        if (!enemy.CompareTag("Boss"))
+                        {
+                            enemyAnimator.SetTrigger("Hit"); // ✅ Bật animation Hit ở đúng đối tượng bị đánh
+                            if (stats.currentHealth <= 0)
+                            {
+                                enemyAnimator.SetTrigger("Die"); // ✅ Bật animation Die ở đúng đối tượng bị đánh
+                                stats.Die(); // Gọi hàm Die nếu có
+                            }
+                        }
+                        else
+                        {
+                            if (stats.currentHealth <= 0)
+                            {
+                                enemyAnimator.SetTrigger("Die"); // ✅ Bật animation Die ở đúng đối tượng bị đánh
+                                stats.BossDie(); // Gọi hàm Die nếu có
+                            }
+                        }
+                    }
+                }
+            }
+
             // Tính vector từ player đến enemy
             Vector2 toEnemy = (enemy.transform.position - attackPoint.position).normalized;
 
@@ -62,8 +96,9 @@ public class CharacterAttack : MonoBehaviour
 
             if (dot > 0) //  > 0 nghĩa là nằm trong nửa phía trước (0°–180°)
             {
-                Debug.Log("Hit " + enemy.name);
-                // enemy.GetComponent<EnemyHealth>()?.TakeDamage(damage); khi nào có thì bỏ comment dòng này
+                //Debug.Log("Hit " + enemy.name);
+
+                
             }
         }
     }
