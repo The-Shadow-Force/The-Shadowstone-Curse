@@ -15,11 +15,23 @@ public class CharacterMove : MonoBehaviour
     private Vector2 currentDirection;
     private Vector2 lastDirection = Vector2.right;
 
+    [Header("Footstep Settings")]
+    public AudioClip footstepClip;
+    public float footstepInterval = 0.4f;
+    private float footstepTimer;
+    private AudioSource audioSource;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         inputActions = new PlayerAction();
         animator = GetComponent<Animator>();
+
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
     }
 
     private void OnEnable()
@@ -43,7 +55,6 @@ public class CharacterMove : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Vẫn xử lý vật lý ở đây
         rb.linearVelocity = movementInput * moveSpeed;
     }
 
@@ -59,7 +70,6 @@ public class CharacterMove : MonoBehaviour
 
         if (movementInput != Vector2.zero)
         {
-            // ✅ Cập nhật hướng hiện tại
             if (Mathf.Abs(movementInput.y) >= Mathf.Abs(movementInput.x))
             {
                 currentDirection = new Vector2(0, Mathf.Sign(movementInput.y));
@@ -71,19 +81,27 @@ public class CharacterMove : MonoBehaviour
 
             lastDirection = currentDirection;
 
-            // Cập nhật ngay lập tức hướng mới khi đang di chuyển
             animator.SetFloat("LastMoveX", lastDirection.x);
             animator.SetFloat("LastMoveY", lastDirection.y);
+
+            // ✅ Phát âm thanh bước chân
+            footstepTimer += Time.deltaTime;
+            if (footstepTimer >= footstepInterval && footstepClip != null)
+            {
+                audioSource.PlayOneShot(footstepClip);
+                footstepTimer = 0f;
+            }
         }
         else
         {
             animator.SetFloat("MoveX", 0);
             animator.SetFloat("MoveY", 0);
-            // Khi đứng yên, tiếp tục giữ hướng cuối cùng
+
             animator.SetFloat("LastMoveX", lastDirection.x);
             animator.SetFloat("LastMoveY", lastDirection.y);
-        }
 
+            footstepTimer = 0f; // reset nếu đứng yên
+        }
     }
 
     public void DisableInputTemporarily(float duration)
@@ -96,5 +114,4 @@ public class CharacterMove : MonoBehaviour
     {
         inputActions.Enable();
     }
-
 }

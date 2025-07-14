@@ -31,6 +31,9 @@ public class SkillData : ScriptableObject
     public int baseDamage = 5;
     public int damagePerLevel = 2;
 
+    [Header("Sound Settings")]
+    public AudioClip soundClipOnHit;
+
     public bool CanUse()
     {
         return Time.time >= lastUsedTime + cooldown;

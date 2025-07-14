@@ -11,6 +11,9 @@ public class CharacterAttack : MonoBehaviour
     [Header("References")]
     public Animator animator;
     public float offset = 0.5f;
+    public AudioSource audioSource;
+    [Header("Audio")]
+    public AudioClip attackSound;
 
     private Vector2 lastDirection = Vector2.right;
 
@@ -34,6 +37,8 @@ public class CharacterAttack : MonoBehaviour
 
             // Gọi hàm xử lý va chạm
             Attack();
+            if (attackSound != null && audioSource != null)
+            audioSource.PlayOneShot(attackSound);
         }
     }
 

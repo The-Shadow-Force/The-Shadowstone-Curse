@@ -7,19 +7,22 @@ public class CharacterHealth : MonoBehaviour
     private Animator animator;
     private bool isDead = false;
 
+    [Header("Audio Clips")]
+    public AudioClip hurtClip;
+    public AudioClip deathClip;
+
+    private AudioSource audioSource;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
         currentHealth = maxHealth;
-    }
 
-    //void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.H)) // Nhấn phím H để test
-    //    {
-    //        TakeDamage(1);
-    //    }
-    //}
+        // Gán AudioSource nếu chưa có
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+            audioSource = gameObject.AddComponent<AudioSource>();
+    }
 
     public void TakeDamage(int damage)
     {
@@ -30,6 +33,10 @@ public class CharacterHealth : MonoBehaviour
         if (currentHealth > 0)
         {
             animator.SetTrigger("Hurt");
+
+            // ✅ Phát âm thanh bị thương
+            if (hurtClip != null)
+                audioSource.PlayOneShot(hurtClip);
         }
         else
         {
@@ -42,11 +49,15 @@ public class CharacterHealth : MonoBehaviour
         isDead = true;
         animator.SetTrigger("Dead");
 
-        // Tùy chọn: Disable chuyển động và các tương tác khác
+        // ✅ Phát âm thanh chết
+        if (deathClip != null)
+            audioSource.PlayOneShot(deathClip);
+
+        // Tắt chuyển động và tương tác
         GetComponent<CharacterMove>().enabled = false;
         GetComponent<CharacterAttack>().enabled = false;
         GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
-        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic; // Ngăn bị đẩy sau khi chết (tùy chọn)
-        GetComponent<Collider2D>().enabled = false; // Không va chạm nữa (nếu cần)
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+        GetComponent<Collider2D>().enabled = false;
     }
 }
