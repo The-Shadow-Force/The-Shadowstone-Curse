@@ -737,6 +737,138 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Tiles-SandstoneDungeons_29
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94cc89ea3a3e3c046930c2fc8e5a1a8e
+      internalID: 540016768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tiles-SandstoneDungeons_30
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 64
+        width: 24
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53f3723fae1a9f445beedc18d8d859cf
+      internalID: -1805452369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tiles-SandstoneDungeons_31
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 64
+        width: 25
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f11657683da28d045aa4567da6679d59
+      internalID: -1980746549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tiles-SandstoneDungeons_32
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 64
+        width: 28
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a4cdee81a71d0c44a5630841331376d
+      internalID: -626254578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tiles-SandstoneDungeons_33
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 64
+        width: 27
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aeb41f5e42440c148ae0c936bffd0e37
+      internalID: -542292843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tiles-SandstoneDungeons_34
+      rect:
+        serializedVersion: 2
+        x: 225
+        y: 64
+        width: 31
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 837cdfd373a626344841ea5b1ec2574e
+      internalID: -933850726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -773,7 +905,13 @@ TextureImporter:
       Tiles-SandstoneDungeons_26: -662535992
       Tiles-SandstoneDungeons_27: -959822536
       Tiles-SandstoneDungeons_28: 727298918
+      Tiles-SandstoneDungeons_29: 540016768
       Tiles-SandstoneDungeons_3: 1007971063
+      Tiles-SandstoneDungeons_30: -1805452369
+      Tiles-SandstoneDungeons_31: -1980746549
+      Tiles-SandstoneDungeons_32: -626254578
+      Tiles-SandstoneDungeons_33: -542292843
+      Tiles-SandstoneDungeons_34: -933850726
       Tiles-SandstoneDungeons_4: -1395116963
       Tiles-SandstoneDungeons_5: -1237852333
       Tiles-SandstoneDungeons_6: -2086764424

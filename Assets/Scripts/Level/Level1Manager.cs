@@ -103,6 +103,7 @@ public class Level1Manager : MonoBehaviour
             {
                 Debug.Log("Level 1 Complete");
                 levelCompleted = true;
+                Destroy(gameObject); 
             }
         }
     }
