@@ -52,7 +52,7 @@ public class CharacterAttack : MonoBehaviour
             if (enemy.CompareTag("Orc") || enemy.CompareTag("Flying_Eye") ||
     enemy.CompareTag("Skeleton") || enemy.CompareTag("Vampire") || enemy.CompareTag("Rat") || enemy.CompareTag("Boss"))
             {
-                //Debug.Log("Hit " + enemy.name);
+                Debug.Log("Hit " + enemy.name);
 
                 CharacterStats stats = enemy.GetComponent<CharacterStats>();
                 if (stats != null)
