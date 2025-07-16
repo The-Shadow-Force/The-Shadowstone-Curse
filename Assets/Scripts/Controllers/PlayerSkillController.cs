@@ -92,13 +92,35 @@ public class PlayerSkillController : MonoBehaviour
                     int damage = skill.GetDamage();
 
                     Collider2D[] hits = Physics2D.OverlapCircleAll(spawnPos, radius, enemyLayers);
-                    foreach (Collider2D hit in hits)
+                    foreach (var hit in hits)
                     {
-                        //if (hit.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-                        //{
-                            Debug.Log($"Hit {hit.name} with {skill.skillName} at level {skill.level}");
-                            hit.GetComponent<CharacterStats>()?.TakeDamage(damage);
-                        //}
+                        if (hit.CompareTag("Orc") || hit.CompareTag("Flying_Eye") ||
+                            hit.CompareTag("Skeleton") || hit.CompareTag("Vampire") ||
+                            hit.CompareTag("Rat") || hit.CompareTag("Boss"))
+                        {
+                            CharacterStats stats = hit.GetComponent<CharacterStats>();
+                            if (stats != null)
+                            {
+                                stats.TakeDamage(damage);
+
+                                // Trigger animation Hit
+                                Animator enemyAnimator = hit.GetComponent<Animator>();
+                                if (enemyAnimator != null && !hit.CompareTag("Boss"))
+                                {
+                                    enemyAnimator.SetTrigger("Hit");
+                                    if (stats.currentHealth <= 0)
+                                    {
+                                        enemyAnimator.SetTrigger("Die");
+                                        stats.Die();
+                                    }
+                                }
+                                else if (hit.CompareTag("Boss") && stats.currentHealth <= 0)
+                                {
+                                    enemyAnimator.SetTrigger("Die");
+                                    stats.BossDie();
+                                }
+                            }
+                        }
                     }
                     if (skill.soundClip != null && audioSource != null)
                     {
@@ -107,62 +129,6 @@ public class PlayerSkillController : MonoBehaviour
                 }
             }
         }
-        //else if (skill == skill2)
-        //{
-        //    Vector3 spawnPos = skillSpawnPoint.position; // Vị trí thực tế của player
-        //    GameObject fx = Instantiate(skill.effectPrefab, spawnPos, Quaternion.identity);
-        //    fx.transform.localScale = Vector3.one * skill.GetEffectScale();
-
-        //    Rigidbody2D rb = fx.GetComponent<Rigidbody2D>();
-        //    Vector2 moveDir = GetComponent<Rigidbody2D>().linearVelocity.normalized;
-
-        //    if (moveDir == Vector2.zero)
-        //        moveDir = lastDirection; // fallback nếu player đang đứng yên
-
-        //    float speed = 5f;
-        //    if (rb != null)
-        //    {
-        //        rb.linearVelocity = moveDir * speed;
-        //        rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
-        //    }
-
-
-        //    // Xoay prefab theo hướng bay
-        //    float angle = Mathf.Atan2(moveDir.y, moveDir.x) * Mathf.Rad2Deg;
-        //    fx.transform.rotation = Quaternion.Euler(0f, 0f, angle);
-
-        //    // Setup trigger
-        //    float radius = skill.GetRange();
-        //    int damage = skill.GetDamage();
-        //    bool hasHit = false;
-
-        //    fx.AddComponent<BoxCollider2D>().isTrigger = true;
-
-        //    fx.AddComponent<ProjectileCollision>().Setup(() =>
-        //    {
-        //        if (hasHit) return;
-        //        Collider2D[] hits = Physics2D.OverlapCircleAll(fx.transform.position, radius, enemyLayers);
-        //        Animator anim = fx.GetComponent<Animator>();
-        //        if (anim != null)
-        //        {
-        //            anim.SetTrigger("Hit");
-        //        }
-
-        //        if (skill.soundClipOnHit != null)
-        //            AudioSource.PlayClipAtPoint(skill.soundClipOnHit, fx.transform.position);
-
-        //        //Collider2D[] hits = Physics2D.OverlapCircleAll(fx.transform.position, radius, enemyLayers);
-        //        foreach (var hit in hits)
-        //        {
-        //            Debug.Log($"Hit {hit.name} with {skill.skillName} at level {skill.level}");
-        //            hit.GetComponent<CharacterStats>()?.TakeDamage(damage); // Sửa ở đây
-        //        }
-
-        //        Destroy(fx, 0.5f);
-        //    }, enemyLayers); // Truyền enemyLayers vào
-
-        //    Destroy(fx, 2f); // auto-destroy nếu không va chạm
-        //}
         else if (skill == skill2)
         {
             Vector3 spawnPos = skillSpawnPoint.position;
@@ -175,7 +141,7 @@ public class PlayerSkillController : MonoBehaviour
             if (moveDir == Vector2.zero)
                 moveDir = lastDirection;
 
-            float speed = 2f; // ✅ Giảm speed xuống 2f
+            float speed = 2f;
             if (rb != null)
             {
                 rb.linearVelocity = moveDir * speed;
@@ -186,53 +152,11 @@ public class PlayerSkillController : MonoBehaviour
             float angle = Mathf.Atan2(moveDir.y, moveDir.x) * Mathf.Rad2Deg;
             fx.transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
-            // Setup trigger
-            float radius = skill.GetRange();
-            int damage = skill.GetDamage();
-            bool hasHit = false;
-
-            CircleCollider2D collider = fx.AddComponent<CircleCollider2D>();
-            collider.isTrigger = true;
-            collider.radius = radius * 2f;
-
-            Physics2D.IgnoreLayerCollision(fx.layer, 8, true); // Item layer
-            Physics2D.IgnoreLayerCollision(fx.layer, 6, true); // Player layer
-
-            Debug.Log($"EnemyLayers mask: {enemyLayers.value}");
-            Debug.Log($"Projectile spawned at: {spawnPos}, moving: {moveDir}, speed: {speed}");
-
-            fx.AddComponent<ProjectileCollision>().Setup(() =>
-            {
-                if (hasHit) return;
-                hasHit = true;
-
-                Debug.Log("Projectile hit callback triggered!");
-
-                Animator anim = fx.GetComponent<Animator>();
-                if (anim != null)
-                    anim.SetTrigger("Hit");
-
-                if (skill.soundClipOnHit != null)
-                    AudioSource.PlayClipAtPoint(skill.soundClipOnHit, fx.transform.position);
-
-                Collider2D[] hits = Physics2D.OverlapCircleAll(fx.transform.position, radius, enemyLayers);
-                Debug.Log($"Found {hits.Length} enemies in range at position {fx.transform.position}");
-                foreach (var hit in hits)
-                {
-                    if (hit.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-                    {
-                        Debug.Log($"Hit {hit.name} with {skill.skillName} at level {skill.level}");
-                        // hit.GetComponent<EnemyHealth>()?.TakeDamage(damage);
-                    
-                    hit.GetComponent<CharacterStats>()?.TakeDamage(damage);
-                    }
-
-                }
-
-                Destroy(fx, 0.5f);
-            }, enemyLayers);
-
-            Destroy(fx, 5f); // Tăng thời gian để projectile có thể hit
+            //// ✅ Sử dụng Coroutine để check collision liên tục
+            //StartCoroutine(CheckProjectileCollision(fx, skill, enemyLayers));
+            // Thay vì callback phức tạp
+            fx.AddComponent<ProjectileCollision>().Setup(skill, enemyLayers);
+            Destroy(fx, 5f);
         }
         else if (skill == ultimate)
         {
@@ -253,12 +177,34 @@ public class PlayerSkillController : MonoBehaviour
             Collider2D[] hits = Physics2D.OverlapCircleAll(spawnPos, radius, enemyLayers);
             foreach (var hit in hits)
             {
-                //if (hit.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-                //{
-                    Debug.Log($"Ultimate hit {hit.name} with {skill.skillName} at level {skill.level}");
-                    hit.GetComponent<CharacterStats>()?.TakeDamage(damage);
-            //}
-        }
+                if (hit.CompareTag("Orc") || hit.CompareTag("Flying_Eye") ||
+                    hit.CompareTag("Skeleton") || hit.CompareTag("Vampire") ||
+                    hit.CompareTag("Rat") || hit.CompareTag("Boss"))
+                {
+                    CharacterStats stats = hit.GetComponent<CharacterStats>();
+                    if (stats != null)
+                    {
+                        stats.TakeDamage(damage);
+
+                        // Trigger animation Hit
+                        Animator enemyAnimator = hit.GetComponent<Animator>();
+                        if (enemyAnimator != null && !hit.CompareTag("Boss"))
+                        {
+                            enemyAnimator.SetTrigger("Hit");
+                            if (stats.currentHealth <= 0)
+                            {
+                                enemyAnimator.SetTrigger("Die");
+                                stats.Die();
+                            }
+                        }
+                        else if (hit.CompareTag("Boss") && stats.currentHealth <= 0)
+                        {
+                            enemyAnimator.SetTrigger("Die");
+                            stats.BossDie();
+                        }
+                    }
+                }
+            }
             GetComponent<CharacterMove>().DisableInputTemporarily(2f);
 
 
@@ -323,6 +269,77 @@ public class PlayerSkillController : MonoBehaviour
         {
             audioSource.PlayOneShot(clip);
             yield return new WaitForSeconds(delay);
+        }
+    }
+
+    private System.Collections.IEnumerator CheckProjectileCollision(GameObject projectile, SkillData skill, LayerMask enemyLayers)
+    {
+        float checkRadius = 0.5f;
+
+        while (projectile != null)
+        {
+            // Check collision mỗi frame
+            Collider2D hit = Physics2D.OverlapCircle(projectile.transform.position, checkRadius, enemyLayers);
+
+            if (hit != null)
+            {
+                Debug.Log($"Projectile hit {hit.name}!");
+
+                // Gây damage AoE tại vị trí va chạm
+                float radius = skill.GetRange();
+                int damage = skill.GetDamage();
+
+                Collider2D[] hits = Physics2D.OverlapCircleAll(projectile.transform.position, radius, enemyLayers);
+                foreach (var enemy in hits)
+                {
+                    if (enemy.CompareTag("Orc") || enemy.CompareTag("Flying_Eye") ||
+                        enemy.CompareTag("Skeleton") || enemy.CompareTag("Vampire") ||
+                        enemy.CompareTag("Rat") || enemy.CompareTag("Boss"))
+                    {
+                        Debug.Log($"Hit {enemy.name} with {skill.skillName} at level {skill.level}");
+
+                        CharacterStats stats = enemy.GetComponent<CharacterStats>();
+                        if (stats != null)
+                        {
+                            stats.TakeDamage(damage);
+
+                            // Trigger animation
+                            Animator enemyAnimator = enemy.GetComponent<Animator>();
+                            if (enemyAnimator != null)
+                            {
+                                if (!enemy.CompareTag("Boss"))
+                                {
+                                    enemyAnimator.SetTrigger("Hit");
+                                    if (stats.currentHealth <= 0)
+                                    {
+                                        enemyAnimator.SetTrigger("Die");
+                                        stats.Die();
+                                    }
+                                }
+                                else if (stats.currentHealth <= 0)
+                                {
+                                    enemyAnimator.SetTrigger("Die");
+                                    stats.BossDie();
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // Trigger animation nổ
+                Animator anim = projectile.GetComponent<Animator>();
+                if (anim != null)
+                    anim.SetTrigger("Hit");
+
+                // Phát âm thanh
+                if (skill.soundClipOnHit != null)
+                    AudioSource.PlayClipAtPoint(skill.soundClipOnHit, projectile.transform.position);
+
+                Destroy(projectile, 0.5f);
+                yield break; // Thoát khỏi coroutine
+            }
+
+            yield return null; // Chờ frame tiếp theo
         }
     }
 
