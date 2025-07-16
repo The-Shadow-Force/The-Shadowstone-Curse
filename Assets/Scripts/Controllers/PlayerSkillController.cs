@@ -93,7 +93,7 @@ public class PlayerSkillController : MonoBehaviour
                     Collider2D[] hits = Physics2D.OverlapCircleAll(spawnPos, radius, enemyLayers);
                     foreach (Collider2D hit in hits)
                     {
-                        if (hit.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+                        if (hit.CompareTag("Enemy"))
                         {
                             Debug.Log($"Hit {hit.name} with {skill.skillName} at level {skill.level}");
                             // hit.GetComponent<EnemyHealth>()?.TakeDamage(damage);
@@ -147,7 +147,7 @@ public class PlayerSkillController : MonoBehaviour
                 Collider2D[] hits = Physics2D.OverlapCircleAll(fx.transform.position, radius, enemyLayers);
                 foreach (var hit in hits)
                 {
-                    if (hit.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+                    if (hit.CompareTag("Enemy"))
                     {
                         Debug.Log($"Hit {hit.name} with {skill.skillName} at level {skill.level}");
                         // hit.GetComponent<EnemyHealth>()?.TakeDamage(damage);
@@ -178,7 +178,7 @@ public class PlayerSkillController : MonoBehaviour
             Collider2D[] hits = Physics2D.OverlapCircleAll(spawnPos, radius, enemyLayers);
             foreach (var hit in hits)
             {
-                if (hit.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+                if (hit.CompareTag("Enemy"))
                 {
                     Debug.Log($"Ultimate hit {hit.name} with {skill.skillName} at level {skill.level}");
                     // hit.GetComponent<EnemyHealth>()?.TakeDamage(damage);
