@@ -2,10 +2,9 @@
 
 public class CharacterHealth : MonoBehaviour
 {
-    public int maxHealth = 5;
-    private int currentHealth;
     private Animator animator;
     private bool isDead = false;
+    public CharacterStats characterStats;
 
     [Header("Audio Clips")]
     public AudioClip hurtClip;
@@ -16,7 +15,6 @@ public class CharacterHealth : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        currentHealth = maxHealth;
 
         // Gán AudioSource nếu chưa có
         audioSource = GetComponent<AudioSource>();
@@ -28,9 +26,9 @@ public class CharacterHealth : MonoBehaviour
     {
         if (isDead) return;
 
-        currentHealth -= damage;
+        characterStats.currentHealth -= damage;
 
-        if (currentHealth > 0)
+        if (characterStats.currentHealth > 0)
         {
             animator.SetTrigger("Hurt");
 
