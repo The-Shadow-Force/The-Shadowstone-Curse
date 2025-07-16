@@ -67,7 +67,6 @@ public class SkeletonAI : MonoBehaviour
 
         if (distanceToPlayer <= attackRange)
         {
-            Debug.Log("Player trong phạm vi tấn công!");
             animator.SetBool("isRunning", false);
             StopAllCoroutines();
             isPatrolling = false;
@@ -77,7 +76,6 @@ public class SkeletonAI : MonoBehaviour
         }
         else if (distanceToPlayer <= detectionRange)
         {
-            Debug.Log("Phát hiện player trong phạm vi phát hiện!");
             StopAllCoroutines();
             isPatrolling = false;
             isReturningToInitial = false;

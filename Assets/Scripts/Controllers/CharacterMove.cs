@@ -55,8 +55,8 @@ public class CharacterMove : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector2 newPosition = rb.position + movementInput.normalized * (moveSpeed * Time.fixedDeltaTime);
-        rb.MovePosition(newPosition);    }
+        rb.linearVelocity = movementInput * moveSpeed;
+    }
 
     private void Update()
     {
