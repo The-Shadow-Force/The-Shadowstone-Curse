@@ -24,7 +24,7 @@ public class DamageZone : MonoBehaviour
             if (hit.CompareTag("Enemy"))
             {
                 Debug.Log($"Hit {hit.name} with VFX damage");
-                // hit.GetComponent<EnemyHealth>()?.TakeDamage(damageAmount);
+                hit.GetComponent<CharacterStats>()?.TakeDamage(damageAmount);
             }
         }
     }
