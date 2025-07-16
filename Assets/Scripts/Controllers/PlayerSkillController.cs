@@ -94,11 +94,11 @@ public class PlayerSkillController : MonoBehaviour
                     Collider2D[] hits = Physics2D.OverlapCircleAll(spawnPos, radius, enemyLayers);
                     foreach (Collider2D hit in hits)
                     {
-                        if (hit.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-                        {
+                        //if (hit.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+                        //{
                             Debug.Log($"Hit {hit.name} with {skill.skillName} at level {skill.level}");
                             hit.GetComponent<CharacterStats>()?.TakeDamage(damage);
-                        }
+                        //}
                     }
                     if (skill.soundClip != null && audioSource != null)
                     {
@@ -253,12 +253,12 @@ public class PlayerSkillController : MonoBehaviour
             Collider2D[] hits = Physics2D.OverlapCircleAll(spawnPos, radius, enemyLayers);
             foreach (var hit in hits)
             {
-                if (hit.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-                {
+                //if (hit.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+                //{
                     Debug.Log($"Ultimate hit {hit.name} with {skill.skillName} at level {skill.level}");
                     hit.GetComponent<CharacterStats>()?.TakeDamage(damage);
-                }
-            }
+            //}
+        }
             GetComponent<CharacterMove>().DisableInputTemporarily(2f);
 
 

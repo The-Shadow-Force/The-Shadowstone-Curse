@@ -18,7 +18,7 @@ public class ProjectileCollision : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        //if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         if (hasHit) return;
 
         // Check collision mỗi FixedUpdate
