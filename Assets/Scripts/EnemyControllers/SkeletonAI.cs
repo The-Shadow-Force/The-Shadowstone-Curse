@@ -133,6 +133,7 @@ public class SkeletonAI : MonoBehaviour
 
         if (distanceToPlayer <= attackRange)
         {
+            Debug.Log(playerStats.currentHealth + "máu còn lại !");
             playerStats.TakeDamage(enemyStats.damage);
         }
         else

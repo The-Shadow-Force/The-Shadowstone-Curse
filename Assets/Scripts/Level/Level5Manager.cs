@@ -13,6 +13,9 @@ public class Level5Manager : MonoBehaviour
     public GameObject flyingEyePrefab;
     public GameObject bossPrefab;
 
+    [Header("Cửa ra")]
+    public GameObject exitWall;
+
     public Transform gateSpawnPoint;
     public Transform enemySpawnOffset;
 
@@ -30,13 +33,21 @@ public class Level5Manager : MonoBehaviour
     private bool levelCompleted = false;
     private GameObject player;
 
+    public void StartLevel()
+    {
+        if (!levelStarted && player != null)
+        {
+            StartCoroutine(RunLevel());
+        }
+    }
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
 
         if (player != null)
         {
-            StartCoroutine(RunLevel());
+            //StartLevel(); // Gọi từ RoomTrigger.cs
         }
         else
         {
@@ -48,6 +59,8 @@ public class Level5Manager : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         gateInstance = Instantiate(spaceGatePrefab, gateSpawnPoint.position, Quaternion.identity);
+
+        SetExitWallTrigger(false);
 
         yield return new WaitForSeconds(1.5f);
         levelStartTime = Time.time;
@@ -86,38 +99,27 @@ public class Level5Manager : MonoBehaviour
         }
 
         spawningActive = false;
-        Debug.Log("All enemies spawned. Waiting for cleanup...");
+        CloseGate();
     }
 
     void Update()
     {
-        if (!levelStarted || levelCompleted || player == null)
-            return;
+        if (!levelStarted || levelCompleted || player == null) return;
 
-        // Nếu player chết bất kỳ lúc nào
-        if (player == null)
-        {
-            Debug.Log("Level Failed - Player Lost");
-            CloseGate();
-            levelCompleted = true;
-            return;
-        }
-
-        // Xoá các enemy null đã bị tiêu diệt
         spawnedEnemies.RemoveAll(e => e == null);
 
-        // Nếu đã spawn xong và quái thường đều chết, thì spawn boss
+        // Khi hết enemy thường -> spawn boss
         if (!bossSpawned && !spawningActive && spawnedEnemies.Count == 0)
         {
             SpawnBoss();
         }
 
-        // Nếu boss đã spawn và đã chết thì kết thúc màn
+        // Boss chết -> hoàn tất màn
         if (bossSpawned && bossInstance == null)
         {
             Debug.Log("Level 5 Complete");
-            CloseGate();
             levelCompleted = true;
+            OpenRoom();
         }
     }
 
@@ -135,6 +137,28 @@ public class Level5Manager : MonoBehaviour
         {
             Destroy(gateInstance);
             gateInstance = null;
+        }
+    }
+
+    private void OpenRoom()
+    {
+        Debug.Log("Boss đã bị tiêu diệt. Mở cửa ra!");
+        SetExitWallTrigger(true);
+    }
+
+    private void SetExitWallTrigger(bool isTrigger)
+    {
+        if (exitWall != null)
+        {
+            BoxCollider2D col = exitWall.GetComponent<BoxCollider2D>();
+            if (col != null)
+            {
+                col.isTrigger = isTrigger;
+            }
+            else
+            {
+                Debug.LogWarning("Exit wall does not have a BoxCollider2D.");
+            }
         }
     }
 }

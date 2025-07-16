@@ -18,6 +18,9 @@ public class CharacterStats : MonoBehaviour
     public event Action OnStatsChanged;
     // === CÁC HÀM CHUNG ===
 
+    [Header("UI")]
+    public HealthBarUI healthBarUI;
+
     public bool isPlayer = false; // Biến để xác định đây có phải là nhân vật người chơi hay không
 
     // Hàm được gọi khi đối tượng được tạo ra
@@ -33,6 +36,9 @@ public class CharacterStats : MonoBehaviour
         currentHealth -= damageAmount;
         currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth); // Đảm bảo máu không âm hoặc vượt max
         //Debug.Log(transform.name + " nhận " + damageAmount + " sát thương.");
+
+        if (healthBarUI != null)
+            healthBarUI.SetHealth(currentHealth, maxHealth);
 
         OnStatsChanged?.Invoke(); // Phát sự kiện khi máu thay đổi
         //// Kiểm tra nếu hết máu

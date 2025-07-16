@@ -9,6 +9,9 @@ public class Level4Manager : MonoBehaviour
     public GameObject vampirePrefab;      // Vampire mạnh
     public GameObject flyingEyePrefab;    // Hỗ trợ từ xa
 
+    [Header("Cửa ra")]
+    public GameObject exitWall;
+
     public Transform gateSpawnPoint;
     public Transform enemySpawnOffset;
 
@@ -24,13 +27,21 @@ public class Level4Manager : MonoBehaviour
     private bool levelCompleted = false;
     private GameObject player;
 
+    public void StartLevel()
+    {
+        if (!levelStarted && player != null)
+        {
+            StartCoroutine(RunLevel());
+        }
+    }
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
 
         if (player != null)
         {
-            StartCoroutine(RunLevel());
+            //StartLevel(); // Được gọi bởi RoomTrigger.cs
         }
         else
         {
@@ -42,6 +53,8 @@ public class Level4Manager : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         gateInstance = Instantiate(spaceGatePrefab, gateSpawnPoint.position, Quaternion.identity);
+
+        SetExitWallTrigger(false);
 
         yield return new WaitForSeconds(1.5f);
         levelStartTime = Time.time;
@@ -102,6 +115,29 @@ public class Level4Manager : MonoBehaviour
             {
                 Debug.Log("Level 4 Complete");
                 levelCompleted = true;
+                OpenRoom();
+            }
+        }
+    }
+
+    private void OpenRoom()
+    {
+        Debug.Log("Phòng đã được dọn dẹp. Mở cửa!");
+        SetExitWallTrigger(true);
+    }
+
+    private void SetExitWallTrigger(bool isTrigger)
+    {
+        if (exitWall != null)
+        {
+            BoxCollider2D col = exitWall.GetComponent<BoxCollider2D>();
+            if (col != null)
+            {
+                col.isTrigger = isTrigger;
+            }
+            else
+            {
+                Debug.LogWarning("Exit wall does not have a BoxCollider2D.");
             }
         }
     }
