@@ -3,10 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class CharacterHealth : MonoBehaviour
 {
-    public int maxHealth = 5;
-    private int currentHealth;
     private Animator animator;
     private bool isDead = false;
+    public CharacterStats characterStats;
 
     [Header("Audio Clips")]
     public AudioClip hurtClip;
@@ -20,7 +19,9 @@ public class CharacterHealth : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        currentHealth = maxHealth;
+
+        if (characterStats == null)
+            characterStats = GetComponent<CharacterStats>();
 
         // Gán AudioSource nếu chưa có
         audioSource = GetComponent<AudioSource>();
@@ -28,7 +29,7 @@ public class CharacterHealth : MonoBehaviour
             audioSource = gameObject.AddComponent<AudioSource>();
 
         if (healthBarUI != null)
-            healthBarUI.SetHealth(currentHealth, maxHealth);
+            healthBarUI.SetHealth(characterStats.currentHealth, characterStats.maxHealth);
 
     }
 
@@ -36,12 +37,12 @@ public class CharacterHealth : MonoBehaviour
     {
         if (isDead) return;
 
-        currentHealth -= damage;
+        characterStats.currentHealth -= damage;
 
         if (healthBarUI != null)
-            healthBarUI.SetHealth(currentHealth, maxHealth);
+            healthBarUI.SetHealth(characterStats.currentHealth, characterStats.maxHealth);
 
-        if (currentHealth > 0)
+        if (characterStats.currentHealth > 0)
         {
             animator.SetTrigger("Hurt");
 
