@@ -906,7 +906,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5897548243448864317
 Transform:
   m_ObjectHideFlags: 0
@@ -3088,7 +3088,7 @@ Transform:
   m_GameObject: {fileID: 4565014359872200947}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.54, y: 1.88, z: 0}
+  m_LocalPosition: {x: 0.01, y: 2.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4452,13 +4452,14 @@ GameObject:
   m_Component:
   - component: {fileID: 3944472643700387194}
   - component: {fileID: 4127953162925138496}
+  - component: {fileID: 968140496522314881}
   m_Layer: 0
   m_Name: EnemyTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3944472643700387194
 Transform:
   m_ObjectHideFlags: 0
@@ -4520,6 +4521,22 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 2.1131089}
   m_EdgeRadius: 0
+--- !u!114 &968140496522314881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6340366636039560683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e222a157b3a53d741a067ba11695f628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barriers:
+  - {fileID: 1761725586542274835}
+  levelPrefab: {fileID: 651829450603982961, guid: 385f16271d877d74ca2d0c96ff56f848, type: 3}
+  spawnPoint: {fileID: 4682077255185524297}
 --- !u!1 &6483978892375852802
 GameObject:
   m_ObjectHideFlags: 0
