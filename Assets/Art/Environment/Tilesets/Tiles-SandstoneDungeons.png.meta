@@ -737,6 +737,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Tiles-SandstoneDungeons_29
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 129
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72c33f4eb7116c34b9a1d8011049157c
+      internalID: -1536714914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -773,6 +795,7 @@ TextureImporter:
       Tiles-SandstoneDungeons_26: -662535992
       Tiles-SandstoneDungeons_27: -959822536
       Tiles-SandstoneDungeons_28: 727298918
+      Tiles-SandstoneDungeons_29: -1536714914
       Tiles-SandstoneDungeons_3: 1007971063
       Tiles-SandstoneDungeons_4: -1395116963
       Tiles-SandstoneDungeons_5: -1237852333
