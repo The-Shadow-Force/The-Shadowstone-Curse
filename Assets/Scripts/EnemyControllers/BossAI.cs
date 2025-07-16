@@ -73,9 +73,20 @@ public class BossAI : MonoBehaviour
                 return;
             }
         }
-
+        
         if (player == null || playerStats == null || playerStats.currentHealth <= 0)
         {
+            GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+            if (playerObject != null)
+            {
+                player = playerObject.transform;
+                playerStats = playerObject.GetComponent<CharacterStats>();
+            }
+            else
+            {
+                // Nếu không tìm thấy Player, không làm gì cả
+                return; 
+            }
             animator.SetBool("isRunning", false);
             return;
         }
