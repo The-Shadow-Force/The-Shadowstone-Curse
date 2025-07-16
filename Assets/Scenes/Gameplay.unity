@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &174779138 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 87750834945254052, guid: 62e544b4bde032c408a8c63cb5962ff5, type: 3}
+  m_PrefabInstance: {fileID: 2014396642}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &523474588
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -505,7 +510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dc7f13f2c2aae14ca659f3a962a3c8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 174779138}
   smoothSpeed: 0.125
 --- !u!1 &1361621590 stripped
 GameObject:
@@ -833,6 +838,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2129693404544264556, guid: 62e544b4bde032c408a8c63cb5962ff5, type: 3}
+      propertyPath: damage
+      value: 500
+      objectReference: {fileID: 0}
       propertyPath: attackSound
       value: 
       objectReference: {fileID: 8300000, guid: a617faf7e13136946a5791d15dcc8998, type: 3}
@@ -855,6 +863,18 @@ PrefabInstance:
     - target: {fileID: 8581323287011603066, guid: 62e544b4bde032c408a8c63cb5962ff5, type: 3}
       propertyPath: isPlayer
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8581323287011603066, guid: 62e544b4bde032c408a8c63cb5962ff5, type: 3}
+      propertyPath: maxHealth
+      value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8581323287011603066, guid: 62e544b4bde032c408a8c63cb5962ff5, type: 3}
+      propertyPath: healthBarUI
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8581323287011603066, guid: 62e544b4bde032c408a8c63cb5962ff5, type: 3}
+      propertyPath: currentHealth
+      value: 5000
       objectReference: {fileID: 0}
     - target: {fileID: 9032386303848945396, guid: 62e544b4bde032c408a8c63cb5962ff5, type: 3}
       propertyPath: m_Name
