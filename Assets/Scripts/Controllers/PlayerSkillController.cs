@@ -175,7 +175,7 @@ public class PlayerSkillController : MonoBehaviour
             if (moveDir == Vector2.zero)
                 moveDir = lastDirection;
 
-            float speed = 2f; 
+            float speed = 2f; // ✅ Giảm speed xuống 2f
             if (rb != null)
             {
                 rb.linearVelocity = moveDir * speed;
