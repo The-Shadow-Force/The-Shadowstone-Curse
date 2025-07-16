@@ -40,11 +40,11 @@ public class PlayerSkillController : MonoBehaviour
         {
             UseSkill(skill1);
         }
-        else if (Input.GetKeyDown(KeyCode.E) && skill2.CanUse())
+        else if (Input.GetKeyDown(KeyCode.W) && skill2.CanUse())
         {
             UseSkill(skill2);
         }
-        else if (Input.GetKeyDown(KeyCode.R) && ultimate.CanUse())
+        else if (Input.GetKeyDown(KeyCode.E) && ultimate.CanUse())
         {
             UseSkill(ultimate);
         }
@@ -94,7 +94,7 @@ public class PlayerSkillController : MonoBehaviour
                     Collider2D[] hits = Physics2D.OverlapCircleAll(spawnPos, radius, enemyLayers);
                     foreach (Collider2D hit in hits)
                     {
-                        if (hit.CompareTag("Enemy"))
+                        if (hit.gameObject.layer == LayerMask.NameToLayer("Enemy"))
                         {
                             Debug.Log($"Hit {hit.name} with {skill.skillName} at level {skill.level}");
                             hit.GetComponent<CharacterStats>()?.TakeDamage(damage);
@@ -219,9 +219,13 @@ public class PlayerSkillController : MonoBehaviour
                 Debug.Log($"Found {hits.Length} enemies in range at position {fx.transform.position}");
                 foreach (var hit in hits)
                 {
-
-                    Debug.Log($"Hit {hit.name} with {skill.skillName} at level {skill.level}");
+                    if (hit.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+                    {
+                        Debug.Log($"Hit {hit.name} with {skill.skillName} at level {skill.level}");
+                        // hit.GetComponent<EnemyHealth>()?.TakeDamage(damage);
+                    
                     hit.GetComponent<CharacterStats>()?.TakeDamage(damage);
+                    }
 
                 }
 
@@ -249,7 +253,7 @@ public class PlayerSkillController : MonoBehaviour
             Collider2D[] hits = Physics2D.OverlapCircleAll(spawnPos, radius, enemyLayers);
             foreach (var hit in hits)
             {
-                if (hit.CompareTag("Enemy"))
+                if (hit.gameObject.layer == LayerMask.NameToLayer("Enemy"))
                 {
                     Debug.Log($"Ultimate hit {hit.name} with {skill.skillName} at level {skill.level}");
                     hit.GetComponent<CharacterStats>()?.TakeDamage(damage);
