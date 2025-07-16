@@ -18,7 +18,7 @@ public class SkillData : ScriptableObject
 
     [Header("Level Settings")]
     public int level = 1;
-    public int maxLevel = 5;
+    public int maxLevel = 20;
 
     [Header("Effect Settings")]
     public float baseRange = 0.5f;
