@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
+using Random = UnityEngine.Random;
 
 public class SkeletonAI : MonoBehaviour
 {
@@ -32,6 +34,25 @@ public class SkeletonAI : MonoBehaviour
 
     void Awake()
     {
+        // GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        // if (playerObject != null)
+        // {
+        //     player = playerObject.transform;
+        //     playerStats = playerObject.GetComponent<CharacterStats>();
+        // }
+        // else
+        // {
+        //     Debug.LogError("Không tìm thấy đối tượng Player! Hãy chắc chắn tag 'Player' được gán đúng.");
+        // }
+
+        enemyStats = GetComponent<CharacterStats>();
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        initialPosition = transform.position;
+    }
+
+    private void Start()
+    {
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         if (playerObject != null)
         {
@@ -42,32 +63,14 @@ public class SkeletonAI : MonoBehaviour
         {
             Debug.LogError("Không tìm thấy đối tượng Player! Hãy chắc chắn tag 'Player' được gán đúng.");
         }
-
-        enemyStats = GetComponent<CharacterStats>();
-        animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        initialPosition = transform.position;
     }
 
     void Update()
     {
         if (player == null || playerStats == null || playerStats.currentHealth <= 0)
         {
-            GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
-            if (playerObject != null)
-            {
-                Debug.Log("Đã tìm thấy Player trở lại.");
-                player = playerObject.transform;
-                playerStats = playerObject.GetComponent<CharacterStats>();
-            }
-            else
-            {
-                // Nếu không tìm thấy Player, không làm gì cả
-                Debug.LogWarning("Không tìm thấy Player! Không thể tiếp tục AI.");
-                return; 
-            }
             animator.SetBool("isRunning", false);
-            // return;
+            return;
         }
 
         if (isAttacking)

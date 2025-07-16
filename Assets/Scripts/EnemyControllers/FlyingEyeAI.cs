@@ -61,24 +61,11 @@ public class FlyingEyeAI : MonoBehaviour
             animator.SetBool("isFlying", false);
             return;
         }
-       
+
         if (player == null || playerStats == null || playerStats.currentHealth <= 0)
         {
-            GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
-            if (playerObject != null)
-            {
-                Debug.Log("Đã tìm thấy Player trở lại.");
-                player = playerObject.transform;
-                playerStats = playerObject.GetComponent<CharacterStats>();
-            }
-            else
-            {
-                // Nếu không tìm thấy Player, không làm gì cả
-                Debug.LogWarning("Không tìm thấy Player! Không thể tiếp tục AI.");
-                return; 
-            }
             animator.SetBool("isFlying", false);
-            // return;
+            return;
         }
 
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
