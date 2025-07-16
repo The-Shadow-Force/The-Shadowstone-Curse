@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharacterHealth : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class CharacterHealth : MonoBehaviour
     public AudioClip hurtClip;
     public AudioClip deathClip;
 
+    [Header("UI")]
+    public HealthBarUI healthBarUI;
+
     private AudioSource audioSource;
 
     private void Awake()
@@ -22,6 +26,10 @@ public class CharacterHealth : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         if (audioSource == null)
             audioSource = gameObject.AddComponent<AudioSource>();
+
+        if (healthBarUI != null)
+            healthBarUI.SetHealth(currentHealth, maxHealth);
+
     }
 
     public void TakeDamage(int damage)
@@ -29,6 +37,9 @@ public class CharacterHealth : MonoBehaviour
         if (isDead) return;
 
         currentHealth -= damage;
+
+        if (healthBarUI != null)
+            healthBarUI.SetHealth(currentHealth, maxHealth);
 
         if (currentHealth > 0)
         {
@@ -42,6 +53,11 @@ public class CharacterHealth : MonoBehaviour
         {
             Die();
         }
+    }
+
+    private void LoadGameOverScene()
+    {
+        SceneManager.LoadScene("GameOver");
     }
 
     private void Die()
@@ -59,5 +75,7 @@ public class CharacterHealth : MonoBehaviour
         GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
         GetComponent<Collider2D>().enabled = false;
+
+        Invoke("LoadGameOverScene", 2f);
     }
 }
