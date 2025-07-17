@@ -490,6 +490,10 @@ PrefabInstance:
     - {fileID: 2479895079117946718, guid: 35cb5d99b7e1e15469961407753336b0, type: 3}
     - {fileID: 4146328947956225564, guid: 35cb5d99b7e1e15469961407753336b0, type: 3}
     - {fileID: 3402700277566109168, guid: 35cb5d99b7e1e15469961407753336b0, type: 3}
+    - {fileID: 5512785996368202793, guid: 35cb5d99b7e1e15469961407753336b0, type: 3}
+    - {fileID: 1454890963430304456, guid: 35cb5d99b7e1e15469961407753336b0, type: 3}
+    - {fileID: 6864763399870828387, guid: 35cb5d99b7e1e15469961407753336b0, type: 3}
+    - {fileID: 4824254432942641136, guid: 35cb5d99b7e1e15469961407753336b0, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2351859855029623672, guid: 35cb5d99b7e1e15469961407753336b0, type: 3}
       insertIndex: 26
@@ -619,6 +623,9 @@ PrefabInstance:
     - {fileID: 3329181140008468901, guid: a93ab500257185b40983a5ce076e97d2, type: 3}
     - {fileID: 1817208076511755165, guid: a93ab500257185b40983a5ce076e97d2, type: 3}
     - {fileID: 409537158908533064, guid: a93ab500257185b40983a5ce076e97d2, type: 3}
+    - {fileID: 5506073692525570669, guid: a93ab500257185b40983a5ce076e97d2, type: 3}
+    - {fileID: 2314174975842172524, guid: a93ab500257185b40983a5ce076e97d2, type: 3}
+    - {fileID: 4378830055576420446, guid: a93ab500257185b40983a5ce076e97d2, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3848426286864091062, guid: a93ab500257185b40983a5ce076e97d2, type: 3}
       insertIndex: 68
@@ -906,6 +913,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 8778114856245884477, guid: f27ac67715eb34d46a565269e0761981, type: 3}
+    - {fileID: 8546830287046715934, guid: f27ac67715eb34d46a565269e0761981, type: 3}
+    - {fileID: 294829908090457752, guid: f27ac67715eb34d46a565269e0761981, type: 3}
+    - {fileID: 2102841436893319479, guid: f27ac67715eb34d46a565269e0761981, type: 3}
+    - {fileID: 4543749612715742494, guid: f27ac67715eb34d46a565269e0761981, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6913923431655916898, guid: f27ac67715eb34d46a565269e0761981, type: 3}
       insertIndex: 26
