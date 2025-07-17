@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7664920557705308015}
   - component: {fileID: 6993585681795845086}
   - component: {fileID: 3267707428155147788}
+  - component: {fileID: -5431544464500588795}
   m_Layer: 5
   m_Name: Card
   m_TagString: Untagged
@@ -94,6 +95,56 @@ MonoBehaviour:
   frontSide: {fileID: 6181552945004055639}
   flipDuration: 0.5
   canFlip: 1
+--- !u!114 &-5431544464500588795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4560453024120817472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07ec862a5ed8f8a4bbbfc77e58cd3f4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backSide: {fileID: 6134383713530259965}
+  frontSide: {fileID: 6181552945004055639}
+  skillIconImg: {fileID: 6993585681795845086}
+  audioSource: {fileID: 0}
+  flipCardSound: {fileID: 8300000, guid: 3f9a969b0779132458b9082a17bb52f1, type: 3}
+  clickSound: {fileID: 0}
+  skillSelectedSound: {fileID: 0}
+  audioVolume: 0.5
+  flipDuration: 0.6
+  pauseAfterFlip: 2
+  fadeOutDuration: 0.5
+  useGameTimePause: 1
+  fadeOutAfterDelay: 1
+  fadeOutCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  debugMode: 1
 --- !u!1 &6134383713530259965
 GameObject:
   m_ObjectHideFlags: 0
