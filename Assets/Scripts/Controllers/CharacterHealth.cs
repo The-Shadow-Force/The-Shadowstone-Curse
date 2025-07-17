@@ -15,6 +15,7 @@ public class CharacterHealth : MonoBehaviour
     public HealthBarUI healthBarUI;
 
     private AudioSource audioSource;
+    private float previousHealth;
 
     private void Awake()
     {
@@ -31,7 +32,35 @@ public class CharacterHealth : MonoBehaviour
         if (healthBarUI != null)
             healthBarUI.SetHealth(characterStats.currentHealth, characterStats.maxHealth);
 
+        previousHealth = characterStats.currentHealth;
     }
+
+    private void Update()
+    {
+        // Kiểm tra nếu máu giảm (có nghĩa là bị tấn công)
+        if (characterStats.currentHealth < previousHealth && !isDead)
+        {
+            // Kiểm tra nếu nhân vật vẫn còn sống
+            if (characterStats.currentHealth > 0)
+            {
+                // Thêm animation và âm thanh cho player
+                animator.SetTrigger("Hurt");
+
+                // Phát âm thanh bị thương
+                if (hurtClip != null)
+                    audioSource.PlayOneShot(hurtClip);
+            }
+            else
+            {
+                // Nếu chết thì gọi Die() của CharacterHealth
+                Die();
+            }
+        }
+
+        // Cập nhật máu trước đó
+        previousHealth = characterStats.currentHealth;
+    }
+
 
     public void TakeDamage(int damage)
     {
@@ -39,8 +68,9 @@ public class CharacterHealth : MonoBehaviour
 
         characterStats.currentHealth -= damage;
 
-        if (healthBarUI != null)
-            healthBarUI.SetHealth(characterStats.currentHealth, characterStats.maxHealth);
+        //if (healthBarUI != null)
+        //    healthBarUI.SetHealth(characterStats.currentHealth, characterStats.maxHealth);
+        characterStats.TakeDamage(damage);
 
         if (characterStats.currentHealth > 0)
         {

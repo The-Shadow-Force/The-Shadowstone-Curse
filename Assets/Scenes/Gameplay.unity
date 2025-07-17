@@ -2119,7 +2119,11 @@ PrefabInstance:
     - target: {fileID: 2084529369059082112, guid: 62e544b4bde032c408a8c63cb5962ff5, type: 3}
       propertyPath: healthBarUI
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1213680333}
+    - target: {fileID: 2084529369059082112, guid: 62e544b4bde032c408a8c63cb5962ff5, type: 3}
+      propertyPath: characterStats
+      value: 
+      objectReference: {fileID: 2055767665}
     - target: {fileID: 2129693404544264556, guid: 62e544b4bde032c408a8c63cb5962ff5, type: 3}
       propertyPath: damage
       value: 500
@@ -2338,6 +2342,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2055767665 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8581323287011603066, guid: 62e544b4bde032c408a8c63cb5962ff5, type: 3}
+  m_PrefabInstance: {fileID: 2014396642}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055767648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b02e8b6ba8d011247822cfaacdfab349, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2124793403
 PrefabInstance:
   m_ObjectHideFlags: 0
