@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharacterStats : MonoBehaviour
 {
@@ -46,6 +47,7 @@ public class CharacterStats : MonoBehaviour
         {
             currentHealth = 0;
             Die();
+            SceneManager.LoadScene("Scenes/GameOver");
         }
     }
 
