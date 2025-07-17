@@ -7,6 +7,7 @@ public class SkillData : ScriptableObject
     public string triggerName = "Skill1"; // Animator Trigger
     public GameObject effectPrefab;
     public AudioClip soundClip;
+    public Sprite skillSprite;
 
     [Header("Dash Settings")]
     public float dashDistance = 1f;

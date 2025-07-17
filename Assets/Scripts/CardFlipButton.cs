@@ -132,6 +132,13 @@ namespace CardSystem
                 return;
             }
 
+            if (skillData?.skillSprite != null)
+            {
+                skillIconImg.sprite = skillData.skillSprite;
+                skillIconImg.gameObject.SetActive(true);
+                if (debugMode) Debug.Log($"[CardFlipButton] Icon set for {skillData.skillName} (from Sprite)");
+            }
+
             if (skillData?.effectPrefab != null)
             {
                 var spriteRenderer = skillData.effectPrefab.GetComponent<SpriteRenderer>();
@@ -365,6 +372,14 @@ namespace CardSystem
                     {
                         frontSide.SetActive(true);
                         if (debugMode) Debug.Log($"[CardFlipButton] FrontSide activated for {name}");
+                    }
+
+                    // Đổi hình skillIconImg thành sprite mới của skill
+                    if (skillIconImg != null && skillData != null && skillData.skillSprite != null)
+                    {
+                        skillIconImg.sprite = skillData.skillSprite;
+                        skillIconImg.gameObject.SetActive(true);
+                        if (debugMode) Debug.Log($"[CardFlipButton] Đã đổi icon skill cho {skillData.skillName}");
                     }
 
                     flipped = true;
