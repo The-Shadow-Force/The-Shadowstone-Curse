@@ -5,7 +5,7 @@ public class ChestController : MonoBehaviour
     // Kéo và thả đối tượng Canvas bạn muốn bật/tắt vào đây từ cửa sổ Hierarchy.
     [Header("Thiết lập Canvas")]
     [Tooltip("Canvas chứa phần thưởng sẽ được bật/tắt.")]
-    public GameObject rewardCanvas;
+    public GameObject[] rewardCanvas;
 
     /// <summary>
     /// Hàm này được gọi một lần khi kịch bản được khởi tạo.
@@ -21,7 +21,10 @@ public class ChestController : MonoBehaviour
         }
 
         // Đảm bảo rằng canvas bị tắt khi bắt đầu game.
-        rewardCanvas.SetActive(false);
+        foreach (var canva in rewardCanvas)
+        {
+            canva.SetActive(false);
+        }
     }
 
     /// <summary>
@@ -37,7 +40,10 @@ public class ChestController : MonoBehaviour
             if (rewardCanvas != null)
             {
                 // Bật canvas lên.
-                rewardCanvas.SetActive(true);
+                foreach (var canva in rewardCanvas)
+                {
+                    canva.SetActive(true);
+                }
             }
         }
     }
@@ -55,7 +61,10 @@ public class ChestController : MonoBehaviour
             if (rewardCanvas != null)
             {
                 // Tắt canvas đi.
-                rewardCanvas.SetActive(false);
+                foreach (var canva in rewardCanvas)
+                {
+                    canva.SetActive(false);
+                }
             }
         }
     }

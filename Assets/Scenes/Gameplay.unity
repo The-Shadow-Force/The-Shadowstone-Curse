@@ -358,6 +358,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b123f192175ca7249ba4075d761e8ce1, type: 3}
+--- !u!1 &280584049 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8367301339337210058, guid: b123f192175ca7249ba4075d761e8ce1, type: 3}
+  m_PrefabInstance: {fileID: 280584048}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &321818331
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -484,7 +489,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deb9453cd4cf49043a8818c05c6b6d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rewardCanvas: {fileID: 133465332}
+  rewardCanvas:
+  - {fileID: 133465332}
+  - {fileID: 280584049}
 --- !u!4 &321818337 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6502405520683043747, guid: 7f992a04df234514a8a385bcabaafd76, type: 3}
@@ -589,7 +596,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deb9453cd4cf49043a8818c05c6b6d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rewardCanvas: {fileID: 133465332}
+  rewardCanvas:
+  - {fileID: 133465332}
+  - {fileID: 280584049}
 --- !u!4 &571203245 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6502405520683043747, guid: 7f992a04df234514a8a385bcabaafd76, type: 3}
@@ -991,7 +1000,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deb9453cd4cf49043a8818c05c6b6d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rewardCanvas: {fileID: 133465332}
+  rewardCanvas:
+  - {fileID: 133465332}
+  - {fileID: 280584049}
 --- !u!61 &1289294878
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1435,7 +1446,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deb9453cd4cf49043a8818c05c6b6d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rewardCanvas: {fileID: 133465332}
+  rewardCanvas:
+  - {fileID: 133465332}
+  - {fileID: 280584049}
 --- !u!4 &1533577288 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6502405520683043747, guid: 7f992a04df234514a8a385bcabaafd76, type: 3}
@@ -1651,7 +1664,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deb9453cd4cf49043a8818c05c6b6d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rewardCanvas: {fileID: 133465332}
+  rewardCanvas:
+  - {fileID: 133465332}
+  - {fileID: 280584049}
 --- !u!4 &1767734182 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6502405520683043747, guid: 7f992a04df234514a8a385bcabaafd76, type: 3}
@@ -1881,7 +1896,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deb9453cd4cf49043a8818c05c6b6d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rewardCanvas: {fileID: 133465332}
+  rewardCanvas:
+  - {fileID: 133465332}
+  - {fileID: 280584049}
 --- !u!4 &1840808188 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6502405520683043747, guid: 7f992a04df234514a8a385bcabaafd76, type: 3}
@@ -2018,7 +2035,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deb9453cd4cf49043a8818c05c6b6d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rewardCanvas: {fileID: 133465332}
+  rewardCanvas:
+  - {fileID: 133465332}
+  - {fileID: 280584049}
 --- !u!4 &1925444799 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6502405520683043747, guid: 7f992a04df234514a8a385bcabaafd76, type: 3}
@@ -2479,7 +2498,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deb9453cd4cf49043a8818c05c6b6d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rewardCanvas: {fileID: 133465332}
+  rewardCanvas:
+  - {fileID: 133465332}
+  - {fileID: 280584049}
 --- !u!4 &2124793409 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6502405520683043747, guid: 7f992a04df234514a8a385bcabaafd76, type: 3}
