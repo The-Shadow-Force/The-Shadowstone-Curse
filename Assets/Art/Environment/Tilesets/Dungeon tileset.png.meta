@@ -434,6 +434,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Dungeon tileset_14
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 112
+        width: 16
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fb46498d7aa13e42b7fd08bd325c597
+      internalID: 825973985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -454,6 +476,7 @@ TextureImporter:
       Dungeon tileset_11: 467633563
       Dungeon tileset_12: 175127123
       Dungeon tileset_13: -1958242622
+      Dungeon tileset_14: 825973985
       Dungeon tileset_2: 406551859847576100
       Dungeon tileset_3: 8547944860168327704
       Dungeon tileset_4: -4596972127225251403
